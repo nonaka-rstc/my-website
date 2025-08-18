@@ -92,7 +92,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 }
 .section-body {
   font-size: var(--fs-body);
-  line-height: var(--lh-3);
+  line-height: 1.6;  /* ← 変更：1.75 → 1.6 */
   max-width: var(--body-max);
   margin: 0 0 2rem 0;
 }
@@ -143,7 +143,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
-  line-height: var(--closing-body-leading);
+  line-height: 1.55;  /* ← 変更：1.7 → 1.55 */
 }
 section.gradation--black .section-title,
 section.gradation--black .section-subtitle { text-align: center }
@@ -183,12 +183,13 @@ section.gradation--black .section-title {
   top:0;
   z-index:1;
   display: flex;
-  justify-content: space-between; /* タイトル左寄せ・×右寄せ */
+  justify-content: space-between;
   align-items: center;
 }
 .modal__body {
   flex:1; font-size: var(--fs-body);
-  line-height: var(--lh-3); max-width: var(--body-max);
+  line-height: 1.6; /* ← 読みやすさのため合わせる */
+  max-width: var(--body-max);
   overflow-y:auto; padding-right:0.5rem;
   margin-top: 1.5rem;
 }
@@ -203,25 +204,23 @@ section.gradation--black .section-title {
   margin: 0 auto 0.4rem;
 }
 
-/* ============================
-   Modal Close Button（右上×）
-   ============================ */
+/* Modal Close Button */
 .modal__close {
   appearance: none;
   border: 0;
   background: transparent;
-  color: #fff;           /* 白文字の× */
-  font-size: 2.4rem;     /* ← バランスの良い大きさ */
+  color: #fff;
+  font-size: 2.4rem;
   font-weight: bold;
   cursor: pointer;
   line-height: 1;
   margin-left: auto;
 }
 .modal__close:hover {
-  color: #ff4081;        /* hoverでピンク系に変化 */
+  color: #ff4081;
 }
 
-/* モーダル内画像（Step01〜Step06共通） */
+/* モーダル内画像 */
 .modal__image {
   text-align: center;
   margin: 1.2rem 0;
@@ -305,11 +304,11 @@ section.gradation--black .section-title {
   }
 }
 
-/* ============================
+/* ========================================
    Modal CTA 専用スタイル
-   ============================ */
+   ======================================== */
 .modal .cta-btn::after {
-  display: none; /* 共通の青紫hoverを打ち消す */
+  display: none;
 }
 .modal .cta-btn {
   display: inline-block;        
@@ -322,18 +321,17 @@ section.gradation--black .section-title {
   z-index: 1;
 }
 .modal .cta-btn:hover {
-  background: #800080; /* 赤紫 */
+  background: #800080;
   color: #fff;
   border-color: #800080;
 }
 
-
 .modal__video {
   position: relative;
   width: 100%;
-  max-width: 480px; /* PCでも大きすぎないように */
+  max-width: 480px;
   aspect-ratio: 16/9;
-  margin: 1rem auto; /* 中央寄せ＆上下余白 */
+  margin: 1rem auto;
 }
 .modal__video iframe {
   width: 100%;
@@ -341,14 +339,11 @@ section.gradation--black .section-title {
   border-radius: 8px;
 }
 
-
-/* Step06 モーダル専用：h3と本文の行間を狭める */
+/* Step06 モーダル専用 */
 #m-s6 .modal__body h3 {
-  margin-top: 1.2rem;   /* 見出しの上は少し余白を確保 */
-  margin-bottom: 0.4rem; /* 見出しの下をぐっと狭める */
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
 }
-
-
 
 
 </style>
@@ -853,4 +848,5 @@ targets.forEach(el => observer.observe(el));
 </script>
 
 </body>
+
 </html>
