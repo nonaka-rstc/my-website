@@ -175,7 +175,8 @@ section.gradation--black .section-title {
   max-height: 90vh;
   background: #fff;
   border-radius: 16px;
-  padding: clamp(1.25rem, 5vw, 2rem);
+  /* 上だけ1rem → 白い隙間をもう少し残す */
+  padding: 1rem clamp(1.25rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2rem);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -188,7 +189,8 @@ section.gradation--black .section-title {
   color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 10px 10px 0 0;
-  margin: -0.8rem -1rem 0.8rem -1rem;
+  /* 上のマージンを0にして自然に配置 */
+  margin: 0 0 0.8rem 0;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -229,8 +231,8 @@ section.gradation--black .section-title {
   border: 0;
   background: transparent;
   color: #fff;
-  font-size: 1.8rem;    /* ← 小さめに調整 */
-  font-weight: normal;  /* ← 細字でスッキリ */
+  font-size: 1.8rem;
+  font-weight: normal;
   cursor: pointer;
   line-height: 1;
   margin-left: auto;
@@ -245,7 +247,7 @@ section.gradation--black .section-title {
   margin: 1.2rem 0;
 }
 .modal__image img {
-  max-width: 60%;   /* ← 80% → 60% に縮小 */
+  max-width: 60%;
   height: auto;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -256,7 +258,7 @@ section.gradation--black .section-title {
 .modal__video {
   position: relative;
   width: 100%;
-  max-width: 360px;   /* PC時は360px */
+  max-width: 360px;
   aspect-ratio: 16/9;
   margin: 1rem auto;
 }
@@ -267,9 +269,11 @@ section.gradation--black .section-title {
 }
 @media (max-width: 480px) {
   .modal__video {
-    max-width: 280px; /* スマホ時は280px */
+    max-width: 280px;
   }
 }
+
+
 
 /* ========================================
    7) Logo
@@ -715,15 +719,23 @@ section.has-divider::after {
     </div>
 
     <div class="modal__body">
+
+      <!-- ✨ 画像追加（他のModalと同じスタイル） -->
+      <div class="modal__image">
+        <img src="step04_modal.png" alt="OZMAN AWARDS トロフィー画像">
+      </div>
+      <!-- ✨ ここまで画像 -->
+
       <p>いま社会は大きく変わっています。AIが設計やコーディングまで担い、評価基準は「どれだけ時間をかけたか」ではなく、「どんな成果を出せたか」へと移りつつあります。こうした転換期に先に挑戦した人ほど、経験の差を積み上げ、先行者利益を手にできます。</p>
       <p>その実戦の舞台が、リツアンが運営する植物園OZMANの実データを用いた社内コンペ「OZMANコンペ」です。テーマは画像認識、売上予測、環境モニタリングなど、実際の現場課題。さらに、金賞1000万円・銀賞500万円・銅賞100万円×5本、合計2000万円という全国的にも異例の規模で開催されます。</p>
-<p><strong>この賞金は挑戦のための着火剤（＝トリガー）。</strong>最初の理由が「賞金が欲しい」でも構いません。データを扱い、モデルを動かし、精度を競う過程で、自然とAI開発の面白さに惹き込まれていくはずです。机上では得られない実戦経験が、あなたを一歩ずつ本物のAIエンジニアへと成長させます。</p>
+      <p><strong>この賞金は挑戦のための着火剤（＝トリガー）。</strong>最初の理由が「賞金が欲しい」でも構いません。データを扱い、モデルを動かし、精度を競う過程で、自然とAI開発の面白さに惹き込まれていくはずです。机上では得られない実戦経験が、あなたを一歩ずつ本物のAIエンジニアへと成長させます。</p>
       <p>OZMANコンペは毎年開催予定です。今年うまくいかなくても、来年また挑戦できます。まずは飛び込み、トリガーをきっかけに成果と成長を掴んでください。</p>
     </div>
 
     <div class="modal__footer"></div>
   </div>
 </div>
+
 
 
 <!-- Step04-2 -->
