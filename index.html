@@ -345,10 +345,15 @@ section.gradation--black .section-title {
   margin-bottom: 0.4rem;
 }
 
+/* Body Copyだけフェードアップ無効化 */
+.section-body.fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+   
 
 </style>
-
-
 
 </head>
 
@@ -850,4 +855,5 @@ targets.forEach(el => observer.observe(el));
 </body>
 
 </html>
+
 
