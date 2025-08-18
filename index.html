@@ -92,7 +92,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 }
 .section-body {
   font-size: var(--fs-body);
-  line-height: 1.6;  /* ← 変更：1.75 → 1.6 */
+  line-height: 1.6;  /* 読みやすさ調整 */
   max-width: var(--body-max);
   margin: 0 0 2rem 0;
 }
@@ -143,7 +143,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
-  line-height: 1.55;  /* ← 変更：1.7 → 1.55 */
+  line-height: 1.55;  /* 読みやすさ調整 */
 }
 section.gradation--black .section-title,
 section.gradation--black .section-subtitle { text-align: center }
@@ -188,7 +188,7 @@ section.gradation--black .section-title {
 }
 .modal__body {
   flex:1; font-size: var(--fs-body);
-  line-height: 1.6; /* ← 読みやすさのため合わせる */
+  line-height: 1.6;
   max-width: var(--body-max);
   overflow-y:auto; padding-right:0.5rem;
   margin-top: 1.5rem;
@@ -202,35 +202,6 @@ section.gradation--black .section-title {
 .modal__footer .cta-btn {
   display:block; max-width: 250px;
   margin: 0 auto 0.4rem;
-}
-
-/* Modal Close Button */
-.modal__close {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  font-size: 2.4rem;
-  font-weight: bold;
-  cursor: pointer;
-  line-height: 1;
-  margin-left: auto;
-}
-.modal__close:hover {
-  color: #ff4081;
-}
-
-/* モーダル内画像 */
-.modal__image {
-  text-align: center;
-  margin: 1.2rem 0;
-}
-.modal__image img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  display: inline-block;
 }
 
 /* ========================================
@@ -260,15 +231,20 @@ section.gradation--black .section-title {
 .fade-up {
   opacity: 0;
   transform: translateY(50px);
-  transition: all 1.2s ease-out;
+  transition: all 1.3s ease-out;
 }
 .fade-up.show {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Headline Body Copyだけ0.5秒遅延 */
+.headline-section .section-body.fade-up {
+  transition-delay: 0.5s;
+}
+
 /* ========================================
-   Step セクション（画像＋テキストレイアウト）
+   9) Step セクション（画像＋テキストレイアウト）
    ======================================== */
 .step-image img {
   width: 100%;
@@ -304,54 +280,6 @@ section.gradation--black .section-title {
   }
 }
 
-/* ========================================
-   Modal CTA 専用スタイル
-   ======================================== */
-.modal .cta-btn::after {
-  display: none;
-}
-.modal .cta-btn {
-  display: inline-block;        
-  margin-left: 0.5rem;
-  background: var(--grad-bluepurple);
-  color: #fff;
-  border: 1px solid #bbb;
-  text-align: left;
-  position: relative;
-  z-index: 1;
-}
-.modal .cta-btn:hover {
-  background: #800080;
-  color: #fff;
-  border-color: #800080;
-}
-
-.modal__video {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 16/9;
-  margin: 1rem auto;
-}
-.modal__video iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-}
-
-/* Step06 モーダル専用 */
-#m-s6 .modal__body h3 {
-  margin-top: 1.2rem;
-  margin-bottom: 0.4rem;
-}
-
-/* Body Copyだけフェードアップ無効化 */
-.section-body.fade-up {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-   
 
 </style>
 
@@ -369,13 +297,13 @@ section.gradation--black .section-title {
     </a>
     <!-- Title もフェイドアップ -->
 <h1 class="headline-title fade-up">AI時代を生き抜くロードマップ</h1>
-<div class="section-body">
-  <p class="fade-up">AIや自動化の波は、単純な開発や作業を容赦なく飲み込んでいきます。</p>
-  <p class="fade-up">昨日まで通用したスキルが、明日には不要になるかもしれない。</p>
-  <p class="fade-up">だからこそ、これから評価されるのは、AIを武器に価値を生み出せる人。</p>
-  <p class="fade-up">リツアンは、AI未経験からでも成長できる6つのステップを用意しました。</p>
-  <p class="fade-up"><strong>知る。磨く。試す。作る。広げる。そして、ゴールへ。</strong></p>
-  <p class="fade-up">一歩ずつ、一緒に学びながら、未来へ歩んでいきましょう。</p>
+<div class="section-body fade-up">
+  <p>AIや自動化の波は、単純な開発や作業を容赦なく飲み込んでいきます。</p>
+  <p>昨日まで通用したスキルが、明日には不要になるかもしれない。</p>
+  <p>だからこそ、これから評価されるのは、AIを武器に価値を生み出せる人。</p>
+  <p>リツアンは、AI未経験からでも成長できる6つのステップを用意しました。</p>
+  <p><strong>知る。磨く。試す。作る。広げる。そして、ゴールへ。</strong></p>
+  <p>一歩ずつ、一緒に学びながら、未来へ歩んでいきましょう。</p>
 </div>
 
   </div>
@@ -855,6 +783,7 @@ targets.forEach(el => observer.observe(el));
 </body>
 
 </html>
+
 
 
 
