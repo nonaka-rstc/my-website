@@ -1,813 +1,115 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI時代を生き抜くロードマップ｜リツアンSTC</title>
-
-<style>
-
-/* ========================================
-   0) Global Variables
-   ======================================== */
-:root {
-  --grad-black: linear-gradient(135deg,#535353,#000000);
-  --grad-gray: linear-gradient(135deg,#fdfbfb,#ebedee);
-  --grad-bluepurple: linear-gradient(135deg,#3a0ca3,#4361ee);
-  --fallback-black:#0f0f10;
-  --fallback-gray:#f1f3f5;
-  --fallback-bluepurple:#3a0ca3;
-
-  --section-y: clamp(4rem, 8vw, 7rem);
-  --container-x: clamp(1rem, 4vw, 2rem);
-  --container-w: 1024px;
-  --body-max: 72ch;
-
-  --fs-headline: clamp(2.2rem, 5vw, 3.2rem);
-  --fs-title: clamp(1.9rem, 3.2vw, 2.4rem);
-  --fs-subtitle: clamp(1.2rem, 2vw, 1.5rem);
-  --fs-body: clamp(1.05rem, 1.7vw, 1.22rem);
-
-  --lh-1: 1.25;
-  --lh-2: 1.5;
-  --lh-3: 1.75;
-
-  --cta-pad-y: 0.55rem;
-  --cta-pad-x: 1.2rem;
-  --cta-radius: 8px;
-  --cta-minw: 200px;
-
-  --gap-title-body-pc: 3rem;
-  --gap-title-body-sp: 1.8rem;
-  --closing-body-width: 60ch;
-  --closing-body-tracking: -0.02em;
-  --closing-body-leading: 1.7;
-}
-
-/* ========================================
-   1) Base
-   ======================================== */
-* { box-sizing:border-box }
-html,body { margin:0; padding:0 }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  color:#333; line-height: var(--lh-3);
-  -webkit-font-smoothing: antialiased;
-}
-img { max-width:100%; height:auto; display:block }
-
-.gradation--black { background:var(--grad-black) }
-.gradation--gray { background:var(--grad-gray) }
-.gradation--bluepurple { background:var(--grad-bluepurple) }
-.on-dark { color:#fff !important }
-
-/* ========================================
-   2) Layout
-   ======================================== */
-section { width:100%; padding: var(--section-y) var(--container-x) }
-.container { max-width: var(--container-w); margin-inline:auto }
-
-/* ========================================
-   3) Typography
-   ======================================== */
-.headline-title {
-  font-size: var(--fs-headline);
-  line-height: var(--lh-1);
-  font-weight: 800;
-  letter-spacing: .01em;
-  margin: 0 0 1rem 0;
-}
-.section-title {
-  font-size: var(--fs-title);
-  line-height: var(--lh-1);
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-}
-.section-subtitle {
-  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
-  line-height: var(--lh-1);
-  font-weight: 600;
-  color:#444;
-  margin: 0 0 1rem 0;
-}
-.section-body {
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  max-width: var(--body-max);
-  margin: 0 0 2rem 0;
-}
-.section-body p { margin:0 0 .9rem 0 }
-.section-body p:last-child { margin-bottom:0 }
-
-/* ========================================
-   4) CTA Buttons
-   ======================================== */
-.cta-row { display:flex; gap:.8rem; flex-wrap:wrap }
-.cta-btn {
-  position: relative;
-  display:inline-block;
-  text-align:center;
-  padding: var(--cta-pad-y) var(--cta-pad-x);
-  min-width: var(--cta-minw);
-  border-radius: var(--cta-radius);
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration:none;
-  color:#fff;
-  overflow:hidden;
-  background: var(--grad-black);
-  z-index: 0;
-}
-.cta-btn::after {
-  content:"";
-  position: absolute; inset:0;
-  background: var(--grad-bluepurple);
-  opacity: 0;
-  transition: opacity .6s ease;
-  z-index: -1;
-}
-.cta-btn:hover::after { opacity: 1 }
-.cta-btn:active { transform: translateY(1px) }
-
-/* ========================================
-   5) Headline / Closing
-   ======================================== */
-.headline-section {
-  text-align:center;
-  padding-top: clamp(8rem, 13vw, 11rem);
-  padding-bottom: clamp(6rem, 11vw, 9rem);
-}
-.headline-section .headline-title { margin-bottom: 5.5rem }
-.headline-section .section-body { margin-left:auto; margin-right:auto }
-
-section.gradation--black .section-body {
-  max-width: var(--closing-body-width);
-  letter-spacing: var(--closing-body-tracking);
-  line-height: 1.55;
-}
-section.gradation--black .section-title,
-section.gradation--black .section-subtitle { text-align: center }
-section.gradation--black .section-body {
-  margin-left: auto; margin-right: auto; text-align: left;
-}
-section.gradation--black .section-title {
-  font-size: clamp(2.2rem, 4vw, 2.8rem);
-  margin-bottom: 3rem;
-}
-
 /* ========================================
    6) Modal
    ======================================== */
 .modal {
-  position: fixed; inset:0; display:none;
+  position: fixed;
+  inset: 0;
+  display: none;
   background: rgba(0,0,0,.5);
-  align-items:center; justify-content:center;
-  padding: 1rem; z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 9999;
 }
-.modal[aria-hidden="false"] { display:flex }
+.modal[aria-hidden="false"] { display: flex }
+
 .modal__panel {
-  width: min(700px, 90vw); max-height: 90vh;
-  background:#fff; border-radius: 16px;
+  width: min(700px, 90vw);
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 16px;
   padding: clamp(1.25rem, 5vw, 2rem);
-  display:flex; flex-direction: column; overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
 .modal__title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 800;
   background: var(--grad-black);
-  color:#fff;
+  color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 10px 10px 0 0;
   margin: -0.8rem -1rem 0.8rem -1rem;
   position: sticky;
-  top:0;
-  z-index:1;
+  top: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .modal__body {
-  flex:1; font-size: var(--fs-body);
+  flex: 1;
+  font-size: var(--fs-body);
   line-height: 1.6;
   max-width: var(--body-max);
-  overflow-y:auto; padding-right:0.5rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
   margin-top: 1.5rem;
 }
-.modal__body p { margin:0 0 .9rem 0 }
+.modal__body p { margin: 0 0 .9rem 0 }
+
 .modal__footer {
-  margin-top:1rem; position: sticky; bottom:0;
-  background:#fff; padding-top: 0.2rem;
-  z-index:1; display:block;
+  margin-top: 1rem;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding-top: 0.2rem;
+  z-index: 1;
+  display: block;
 }
 .modal__footer .cta-btn {
-  display:block; max-width: 250px;
+  display: block;
+  max-width: 250px;
   margin: 0 auto 0.4rem;
 }
 
-/* ========================================
-   7) Logo
-   ======================================== */
-.logo {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  width: 140px;
+/* Modal Close Button */
+.modal__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.8rem;    /* ← 小さめに調整 */
+  font-weight: normal;  /* ← 細字でスッキリ */
+  cursor: pointer;
+  line-height: 1;
+  margin-left: auto;
+}
+.modal__close:hover {
+  color: #ff4081;
+}
+
+/* モーダル内画像 */
+.modal__image {
+  text-align: center;
+  margin: 1.2rem 0;
+}
+.modal__image img {
+  max-width: 60%;   /* ← 80% → 60% に縮小 */
   height: auto;
-  min-width: 100px;
-  max-width: 20vw;
-  z-index: 10;
-}
-@media (max-width: 480px){
-  .logo {
-    width: 120px;
-    top: 1rem;
-    left: 1rem;
-  }
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: inline-block;
 }
 
-/* ========================================
-   8) Scroll Animation
-   ======================================== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.3s ease-out;
-}
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Headline Body Copyだけ0.5秒遅延 */
-.headline-section .section-body.fade-up {
-  transition-delay: 0.7s;
-}
-
-/* Closing Body Copyも0.5秒遅延 */
-.closing-section .section-body.fade-up {
-  transition-delay: 0.7s;
-}
-
-
-
-/* ========================================
-   9) Step セクション（画像＋テキストレイアウト）
-   ======================================== */
-.step-image img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-}
-.step-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4rem;
-  flex-wrap: nowrap;
-  margin-bottom: 2rem;
-}
-.step-text { flex: 1 1 60%; }
-.step-image {
-  flex: 1 1 40%;
-  text-align: right;
-  margin-top: 3rem;
-}
-@media (max-width: 768px) {
-  .step-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  .step-image { display: none; }
-}
-
-/* ========================================
-   10) Step Divider（三角形・擬似要素）
-   ======================================== */
-section.has-divider {
+/* モーダル内YouTube動画 */
+.modal__video {
   position: relative;
+  width: 100%;
+  max-width: 360px;   /* PC時は360px */
+  aspect-ratio: 16/9;
+  margin: 1rem auto;
 }
-section.has-divider::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) translateY(50%);
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 30px solid #bbb; /* 大きめ三角形 */
-  z-index: 10;
+.modal__video iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
 }
-
-
-</style>
-
-</head>
-
-<body>
-
-<!-- =========================
-     Headline（黒グラデ ／ 全幅）
-     ========================= -->
-<section class="gradation--black on-dark headline-section" style="position: relative;">
-  <div class="container">
-    <a href="https://ritsuan.com/" target="_blank" rel="noopener">
-      <img src="ritsuan_logo_white_v2.png" alt="リツアンSTC ロゴ" class="logo">
-    </a>
-    <!-- Title もフェイドアップ -->
-<h1 class="headline-title fade-up">AI時代を生き抜くロードマップ</h1>
-<div class="section-body fade-up">
-  <p>AIや自動化の波は、単純な開発や作業を容赦なく飲み込んでいきます。</p>
-  <p>昨日まで通用したスキルが、明日には不要になるかもしれない。</p>
-  <p>だからこそ、これから評価されるのは、AIを武器に価値を生み出せる人。</p>
-  <p>リツアンは、AI未経験からでも成長できる6つのステップを用意しました。</p>
-  <p><strong>知る。磨く。試す。作る。広げる。そして、ゴールへ。</strong></p>
-  <p>一歩ずつ、一緒に学びながら、未来へ歩んでいきましょう。</p>
-</div>
-
-  </div>
-</section>
-
-<!-- =========================
-     S1（白） Step01｜知る
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step01.png" alt="AIテック イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step01｜知る</h2>
-        <div class="section-subtitle fade-up">AIテック</div>
-        <p><strong>「AIって何？ どこで使われている？」</strong></p>
-        <p>そんな素朴な疑問を解くところから始まります。</p>
-        <p>ここを押さえるだけで、学びのスピードは一気に上がります。</p>
-        <p>AIテックでは、一流講師と実践形式で学び、活用事例からLLM開発まで習得。</p>
-        <p>自然言語処理・画像認識・音声処理など幅広く触れ、次のステップに進む土台を作ります。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s1');return false;">AIテックって何？</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-
-<!-- =========================
-     S2（灰グラデ） Step02｜磨く
-     ========================= -->
-<section class="gradation--gray has-divider">
-  <div class="container">
-    <div class="step-row">
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step02｜磨く</h2>
-        <div class="section-subtitle fade-up">G検定・E資格</div>
-        <p><strong>「知っている」を「理解している」に変える。</strong></p>
-        <p>基礎を固めたら、次は自信を持って語れるレベルまで引き上げます。</p>
-        <p>G検定やE資格に挑戦し、学びを形にして証明。</p>
-        <p>資格は自分の成長を客観的に示すだけでなく、次の実戦に踏み出す強い後押しになります。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s2');return false;">G検定・E資格を詳しく知る</a>
-        </div>
-      </div>
-      <div class="step-image fade-up">
-        <img src="step02.png" alt="Step02 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S3（白） Step03｜試す
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step03.png" alt="Step03 イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step03｜試す</h2>
-        <div class="section-subtitle fade-up">社外コンペに挑戦！</div>
-        <p><strong>現場で通用する力は、机上では身につかない。</strong></p>
-        <p>Step02で培った基礎を武器に、Kaggleのような世界的コンペに挑みます。</p>
-        <p>公開データでAIモデルを作り、精度や発想力を競う。</p>
-        <p>試行錯誤を重ねる経験が、勝てる技術を確かなものにします。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s3');return false;">Kaggleを詳しく知る</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S4（灰グラデ） Step04｜作る
-     ========================= -->
-<section class="gradation--gray has-divider">
-  <div class="container">
-    <div class="step-row">
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step04｜作る</h2>
-        <div class="section-subtitle fade-up">社内コンペに挑戦！</div>
-        <p><strong>「あなたのモデルが、実際のビジネスで動き出すかもしれない。」</strong></p>
-        <p>賞金総額2000万円の社内コンペで、OZMANの実データを使って現場課題に挑みます。</p>
-        <p>画像認識、売上予測、環境モニタリングなど多彩なテーマ。</p>
-        <p>結果次第で、あなたの開発したAIがリアルビジネスに導入されます。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s4-1');return false;">2000万円を懸けたAIコンペとは？</a>
-          <a href="#" class="cta-btn" onclick="openModal('m-s4-2');return false;">OZMANを詳しく知る</a>
-        </div>
-      </div>
-      <div class="step-image fade-up">
-        <img src="step04.png" alt="Step04 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S5（白） Step05｜広げる
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step05.png" alt="Step05 イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step05｜広げる</h2>
-        <div class="section-subtitle fade-up">リアルな現場に挑戦！</div>
-        <p><strong>この経験は、履歴書に書ける武器になる。</strong></p>
-        <p>社内コンペで結果を残したら、地方の企業や自治体と協働します。</p>
-        <p>業種も課題も異なる現場で、PoCにとどまらず本稼働AIを作り切る。</p>
-        <p>転職や独立でも強いアピールになる実績を手にし、スキルの幅を一気に広げます。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s5');return false;">リビングラボを詳しく知る</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-<!-- =========================
-     S6（灰グラデ） Step06｜ゴール
-     ========================= -->
-<section class="gradation--gray">
-  <div class="container">
-    <div class="step-row">
-      <!-- 左：テキスト -->
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step06｜それぞれのゴール</h2>
-        <div class="section-subtitle fade-up">飛び立つ未来</div>
-        <p><strong>ここからは、あなたが選ぶ番です。</strong></p>
-        <p>6つのステップを駆け抜けたあなたは、AI時代を戦える力を手にしました。</p>
-        <p>年収や待遇を上げる。新しい舞台に挑戦する。理想を形にして独立する。</p>
-        <p>どの道を選んでも、それはあなたが掴み取った正解です。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s6');return false;">昇給、転職、独立</a>
-        </div>
-      </div>
-      <!-- 右：画像 -->
-      <div class="step-image fade-up">
-        <img src="step06.png" alt="Step06 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================
-     Closing（黒グラデ）
-     ========================= -->
-<section class="gradation--black on-dark closing-section">
-  <div class="container">
-    <h2 class="section-title fade-up">AI時代に、リツアンはどう変わるか</h2>
-    <div class="section-body fade-up">
-      <p>いま、働き方のルールが大きく変わろうとしています。AIの進化により、設計やコーディングといった「人が時間をかけていた仕事」は瞬時に処理できるようになりました。</p>
-      <p>その結果、従来の人月単価モデルは通用しなくなります。これから評価されるのは、「何時間働いたか」ではなく「どんな成果を出せたか」です。</p>
-      <p>この変化は、多重下請け構造にも直撃します。元請けがAIで効率化すれば、中間レイヤーの仕事は急速に縮小し、SES型の下請けモデルは生き残りが難しくなります。</p>
-      <p>だからリツアンは、「人を貸す会社」から前進します。目指すのは、企業の課題をAIで解決する技術提供会社。</p>
-      <p>そのために、AI開発とソリューション提供に特化した新会社を立ち上げます。</p>
-      <p>ここで言うソリューションとは、課題発見から設計・開発・実装・運用までを一貫して担うことです。</p>
-      <p>時代はすでに動き出しています。その潮流に自ら乗り込み、次の時代の価値を創り出すために、リツアンは本気で動きます。</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================
-     Modals
-     ========================= -->
-
-<!-- Step01 -->
-<div class="modal" id="m-s1" aria-hidden="true" role="dialog" aria-modal="true" aria-label="AIテックって何？">
-  <div class="modal__panel">
-    <div class="modal__title">
-      AIテックって何？
-      <button class="modal__close" onclick="closeModal('m-s1')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="step01_modal.png" alt="AIテックの紹介画像">
-      </div>
-
-      <p>AIテックは、「AIって何？ どこで使われているの？」という疑問から学び始められる、リツアン独自のリスキリング講座です。3つの専門プログラムを通じて、AI時代に必要なスキルを安心して、そして未来を見据えて身につけられるように設計されています。</p>
-      <p>最初の入り口は、「AIエージェント実践ウェビナー」（1回）。ここでは「AIが人の代わりに仕事を進める」とはどういうことかを体験できます。日常のタスクを自動でこなすデモを目にすると、AIが社会や働き方をどう変えていくのかを具体的に理解できます。──ここは“AIの可能性を実感するステージ”。</p>
-
-      <div class="modal__image">
-        <img src="Step01_modal2.png" alt="RAG実装に使用するツールのスライド画像">
-      </div>
-
-      <p>次に、「LLMサービス開発講座」（全4回）。基礎編1回と実践編3回で構成され、大規模言語モデル（LLM）の理解から応用までを体系的に学びます。プロンプト設計やRAG、開発ツールの活用を通じて「自分のアイデアをAIで形にする力」が養われます。──ここは“社会実装に挑戦するステージ”。</p>
-      <p>そして今後は、「AI開発講座」（全4回）。画像認識や音声処理など幅広いテーマを扱い、AIモデルを自分の手で構築し動かす実践力を磨きます。基礎編は2025年10月下旬に開催予定で、その後の実践編では成果を出せるモデル開発に挑戦します。──ここは“幅広い応用力を鍛えるステージ”。</p>
-
-      <div class="modal__image">
-        <img src="Step01_modal3.png" alt="RAGの基本構成と役割分担スライド画像">
-      </div>
-
-      <p>講師は、東京大学・松尾研発スタートアップの第一線メンバー。研究の最前線と実務の両方に精通したプロが、初心者にもわかりやすく、同時に実務家にとっても価値ある講義を届けます。</p>
-      <p>講座はすべてオンライン。すでに開催された回はアーカイブ動画で視聴可能なので、今からでも過去の講座を学ぶことができます。さらに、リツアン社員だけでなく外部の方も、メール登録だけで受講可能です。</p>
-      <p>「AIを知っている」から「AIを使える」へ。AIテックは、誰もが未来へ踏み出せる実践の場です。</p>
-    </div>
-
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://ritsuan.com/ai_tech/" target="_blank" rel="noopener">▶ AIテック公式サイトへ</a>
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- Step02 -->
-<div class="modal" id="m-s2" aria-hidden="true" role="dialog" aria-modal="true" aria-label="G検定・E資格を詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      G検定・E資格を詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s2')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <p>AIの学びを次の段階へ進めるのがStep02です。ここでは 「G検定」と「E資格」 に挑戦します。</p>
-      <p>G検定 は、AIの基礎知識や活用事例を体系的に整理し、理解度を客観的に示せる資格です。基礎を固め、自信を持って語れる力につながります。</p>
-      <p>E資格 はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価します。受験には JDLA認定プログラムの修了が必須で、通常は十数万円規模の受講料が必要です。現在リツアンは認定プログラム事業者となる準備を進めており、2026年初夏以降には、社員やキャリターン登録者が無料で受講できる仕組みを整える予定です。</p>
-      <p>また、資格保有者による メンタリング制度 や、仲間と学び合える仕組みを設け、レベルを問わず挑戦しやすい環境を準備しています。</p>
-      <p>Step02は「試験に合格すること」だけが目的ではありません。ここで得た知識を確かな証明へと変え、次の Step03「社外コンペ」に挑むための大切な土台となります。</p>
-
-    </div>
-
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://www.jdla.org/certificate/" target="_blank" rel="noopener">▶ JDLA公式サイトへ</a>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Step03 -->
-<div class="modal" id="m-s3" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kaggleを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      Kaggleを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s3')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="Step03_modal.png" alt="Kaggle挑戦のイメージ画像">
-      </div>
-
-      <p>知識を実力に変えるには、実戦の場で手を動かすことが欠かせません。Step03では、社外コンペに挑戦します。代表例が、Googleが運営する世界最大級のデータサイエンスプラットフォーム、Kaggleです。</p>
-      <p>Kaggleには世界中から数十万人のエンジニアや研究者が集まり、公開データを使ってAIモデルを開発し、その精度や発想力を競います。ここで得られる経験は、机上の勉強だけでは到達できない実践力につながります。</p>
-      <p>実際のデータにはノイズや欠損値が含まれ、理論通りには進みません。Kaggleでは、こうした課題を前に特徴量の工夫やアルゴリズムの選択を繰り返し試行錯誤することになります。この過程そのものが、AI開発に不可欠なスキルを育てます。</p>
-      <p>さらに、Kaggleの大きな魅力は世界基準でのベンチマークです。同じ課題に数万人規模で挑戦するため、自分のモデルが国際的にどのレベルにあるかを客観的に把握できます。上位入賞が唯一の目的ではなく、この挑戦のプロセスで得られる「経験の厚み」こそが最大の財産です。</p>
-      <p>Step03は、Googleが支える国際舞台で力を試し、挑戦を通じて成長するステージです。ここで実力を残した者が次のStep04「社内コンペ」への挑戦権を得ます。</p>
-    </div>
-
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://www.kaggle.com/" target="_blank" rel="noopener">▶ Kaggle公式サイトへ</a>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Step04-1 -->
-<div class="modal" id="m-s4-1" aria-hidden="true" role="dialog" aria-modal="true" aria-label="2000万円を懸けたAIコンペとは？">
-  <div class="modal__panel">
-    <div class="modal__title">
-      2000万円を懸けたAIコンペとは？
-      <button class="modal__close" onclick="closeModal('m-s4-1')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-      <p>いま社会は大きく変わっています。AIが設計やコーディングまで担い、評価基準は「どれだけ時間をかけたか」ではなく、「どんな成果を出せたか」へと移りつつあります。こうした転換期に先に挑戦した人ほど、経験の差を積み上げ、先行者利益を手にできます。</p>
-      <p>その実戦の舞台が、リツアンが運営する植物園OZMANの実データを用いた社内コンペ「OZMANコンペ」です。テーマは画像認識、売上予測、環境モニタリングなど、実際の現場課題。さらに、金賞1000万円・銀賞500万円・銅賞100万円×5本、合計2000万円という全国的にも異例の規模で開催されます。</p>
-<p><strong>この賞金は挑戦のための着火剤（＝トリガー）。</strong>最初の理由が「賞金が欲しい」でも構いません。データを扱い、モデルを動かし、精度を競う過程で、自然とAI開発の面白さに惹き込まれていくはずです。机上では得られない実戦経験が、あなたを一歩ずつ本物のAIエンジニアへと成長させます。</p>
-      <p>OZMANコンペは毎年開催予定です。今年うまくいかなくても、来年また挑戦できます。まずは飛び込み、トリガーをきっかけに成果と成長を掴んでください。</p>
-    </div>
-
-    <div class="modal__footer"></div>
-  </div>
-</div>
-
-
-<!-- Step04-2 -->
-<div class="modal" id="m-s4-2" aria-hidden="true" role="dialog" aria-modal="true" aria-label="OZMANを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      OZMANを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s4-2')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="Step04_modal_ozman.png" alt="OZMANの外観写真">
-      </div>
-
-      <p>OZMANは、静岡県掛川市にあるリツアン運営の植物園兼ショップです。廃工場をリノベーションした空間に、塊根植物（コーデックス）や多肉植物、ビザールプランツなど、世界中から集めた約1,000種類の希少植物を展示・販売しています。初心者から愛好家まで楽しめる、地域でも珍しいスポットです。</p>
-      <p>OZMANは、障がい者が働く駄菓子屋「横さんち」の発想から生まれました。植物の管理や販売を通じて、多様な人が活躍できるソーシャルファーム型の雇用の場でもあり、地域とのつながりを大切にした取り組みが広がっています。</p>
-      <p>さらに、店内にはカフェやドッグラン、アンティークギャラリーも併設され、訪れる人が思い思いの時間を過ごせる空間になっています。バリアフリー設計で、車椅子やベビーカーでも安心して楽しめるのも大きな特徴です。</p>
-      <p>OZMANは、こちらのYouTube動画で紹介されています。</p>
-      <p>おすすめのビカクシダや店内の雰囲気が映し出されており、動画を見るだけで植物の魅力やお店の世界観を感じ取ることができます。</p>
-
-      <!-- ★ 追加したYouTube埋め込み ★ -->
-      <div class="modal__video">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iz0KLTeDEIQ?si=Etl3BXxDQPwOXzi1" 
-          title="YouTube video player" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-      <!-- ★ ここまで追加 ★ -->
-
-    </div>
-
-    <div class="modal__footer"></div>
-  </div>
-</div>
-
-
-
-<!-- Step05 -->
-<div class="modal" id="m-s5" aria-hidden="true" role="dialog" aria-modal="true" aria-label="リビングラボを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      リビングラボを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s5')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="Step05_modal.png" alt="リビングラボのイメージ画像">
-      </div>
-
-      <p>Step05では「リビングラボ」に挑戦します。リビングラボとは、研究室の中ではなく工場やお店、役所といった“生活の現場”を舞台に、新しい技術やサービスを試し、改良していく仕組みです。エンジニアだけでなく、住民・企業・行政も一緒に参加するのが特徴です。</p>
-      <p>リツアンのStep05では、自治体や商工会と協力し、地元の商店や町工場の課題にAIで挑みます。たとえば、商店街でカメラを使い、来店客の年代や性別をざっくり分析して売り場づくりに活かす。観光地で人の流れをデータで見える化し、混雑を予測して案内を工夫する。町工場では機械の動きを記録して、壊れる前に予防できるようにする――こうした“小さな成功”をまず無償で提供し、「AIは実際に役立つ」と実感してもらいます。</p>
-      <p>しかし私たちの狙いはPoC（概念実証）にとどめることではありません。多くのAIプロジェクトは実験で終わってしまいますが、Step05では開発から導入、運用・保守までを一気通貫で実装します。最初は無償で導入を後押しし、その後は有償の本格システムへ発展させることで、持続可能な仕組みを築きます。</p>
-      <p>地方は都市に比べてDXやAIの導入が遅れがちです。だからこそリビングラボを地方から始めます。エンジニアには経験と実績が残り、企業には確かな成果が届き、リツアンには信用とノウハウが積み重なる。――まさに「三方よし」を実現するステージがStep05です。</p>
-    </div>
-
-    <div class="modal__footer"></div>
-  </div>
-</div>
-
-
-
-<!-- Step06 -->
-<div class="modal" id="m-s6" aria-hidden="true" role="dialog" aria-modal="true" aria-label="昇給、転職、独立">
-  <div class="modal__panel">
-    <div class="modal__title">
-      昇給、転職、独立
-      <button class="modal__close" onclick="closeModal('m-s6')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-      <h3>昇給する</h3>
-      <p>
-        リツアンは新たに、AI開発・ソリューション事業に特化した新会社を立ち上げます。ここではエンドユーザーと直接契約する「元請けポジション」を確立し、報酬の基準を下請け単価ではなく元請け単価に設定します。これにより、派遣やSESに比べて大幅な収入アップが見込めます。努力と成果がそのままの給与に反映される仕組みです。
-      </p>
-
-      <p>
-        新会社への移行は、ロードマップを修了し「AIを理解し、実装・活用できる人材」へ成長したメンバーから順に進めます。特に、プロジェクトの責任者やリーダーとして力を発揮できる人が中心となります。学びを積み重ねることで自然に次のステージへの扉が開き、収入アップにもつながっていく――そんな流れを描いています。
-      </p>
-
-      <p>
-        将来的には、新会社がエンドユーザーから直接案件を受注し、その案件に必要な人材を本体のリツアンから調達する循環モデルを構築します。優秀な責任者やリーダーが案件をリードし、他のリツアン社員を巻き込みながら開発を進めることで、グループ全体が成長していく仕組みを目指します。
-      </p>
-
-      <hr>
-
-<h3>転職する</h3>
-<p>
-  経産省の試算では、2030年に日本国内で最大79万人のIT・AI人材が不足するとされています。足りないのは単なる開発要員ではなく、AI・IoT・クラウド・データ解析といった最新技術を学び活用できる人材や、DXを推進して業務やビジネスモデルを変革できる人材です。こうした「技術 × ビジネス × マネジメント」を兼ね備えた人材は市場で高く評価され、転職市場でも大きなプレミアムがつきます。
-</p>
-
-<p>
-  リツアンは
-  <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">
-    数百社を超える大手企業やAIスタートアップ
-  </a>
-  と提携し、希望者を最適な職場へとつなぐキャリアブリッジの役割を担います。具体的には、キャリアシートの整備、推薦文の作成、面接対策（行動事例面接＝BEI）のサポートを提供し、あなたの強みを正しく伝える環境を整えます。さらに、転職後のフォローアップ体制も設け、キャリアの定着と成長を長期的に後押しします。
-</p>
-      <hr>
-
-<h3>独立する</h3>
-<p>
-  リツアンはフリーランス支援に加え、法人化を目指すエンジニアに向けて
-  <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度</a>
-  を進めています。これは、チームを率いてマネジメントに挑戦し、報酬の幅を広げられる仕組みです。
-</p>
-
-<p>
-  フリーランスが直面しがちな「時間と体力に縛られる限界」を突破し、仲間と共にスケールの大きい事業をつくれるのが特長です。リスクを抑えつつ、案件紹介・バックオフィス支援・経営ノウハウの提供を組み合わせ、安心して自分のビジネスを育てられる環境を整えています。
-</p>
-    </div>
-
-    <div class="modal__footer"></div>
-  </div>
-</div>
-
-
-
-<script>
-/* ===============
-   Modal Controller
-   ================ */
-function openModal(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.setAttribute('aria-hidden','false');
-  document.addEventListener('keydown', escClose);
-  el.addEventListener('click', backdropClose);
-}
-function closeModal(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.setAttribute('aria-hidden','true');
-  document.removeEventListener('keydown', escClose);
-  el.removeEventListener('click', backdropClose);
-}
-function escClose(e){
-  if(e.key === 'Escape'){
-    document.querySelectorAll('.modal[aria-hidden="false"]').forEach(m=>{
-      m.setAttribute('aria-hidden','true');
-    });
-    document.removeEventListener('keydown', escClose);
+@media (max-width: 480px) {
+  .modal__video {
+    max-width: 280px; /* スマホ時は280px */
   }
 }
-function backdropClose(e){
-  if(e.target.classList.contains('modal')){
-    e.currentTarget.setAttribute('aria-hidden','true');
-    document.removeEventListener('keydown', escClose);
-  }
-}
-</script>
-<script>
-/* ===============
-   Scroll Animation（一度表示されたら保持）
-   ================ */
-const targets = document.querySelectorAll('.fade-up');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');  // 表示
-      observer.unobserve(entry.target);    // 監視解除 → 上に戻っても消えない
-    }
-  });
-});
-
-// 全要素を監視開始
-targets.forEach(el => observer.observe(el));
-</script>
-
-</body>
-
-</html>
-
-
-
-
