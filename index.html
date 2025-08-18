@@ -92,7 +92,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 }
 .section-body {
   font-size: var(--fs-body);
-  line-height: 1.6;  /* 読みやすさ調整 */
+  line-height: 1.6;
   max-width: var(--body-max);
   margin: 0 0 2rem 0;
 }
@@ -143,7 +143,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
-  line-height: 1.55;  /* 読みやすさ調整 */
+  line-height: 1.55;
 }
 section.gradation--black .section-title,
 section.gradation--black .section-subtitle { text-align: center }
@@ -237,11 +237,17 @@ section.gradation--black .section-title {
   opacity: 1;
   transform: translateY(0);
 }
-
 /* Headline Body Copyだけ0.5秒遅延 */
 .headline-section .section-body.fade-up {
-  transition-delay: 0.5s;
+  transition-delay: 0.7s;
 }
+
+/* Closing Body Copyも0.5秒遅延 */
+.closing-section .section-body.fade-up {
+  transition-delay: 0.7s;
+}
+
+
 
 /* ========================================
    9) Step セクション（画像＋テキストレイアウト）
@@ -261,9 +267,7 @@ section.gradation--black .section-title {
   flex-wrap: nowrap;
   margin-bottom: 2rem;
 }
-.step-text {
-  flex: 1 1 60%;
-}
+.step-text { flex: 1 1 60%; }
 .step-image {
   flex: 1 1 40%;
   text-align: right;
@@ -275,9 +279,25 @@ section.gradation--black .section-title {
     align-items: center;
     gap: 2rem;
   }
-  .step-image {
-    display: none;
-  }
+  .step-image { display: none; }
+}
+
+/* ========================================
+   10) Step Divider（三角形・擬似要素）
+   ======================================== */
+section.has-divider {
+  position: relative;
+}
+section.has-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(50%);
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid #bbb; /* 大きめ三角形 */
+  z-index: 10;
 }
 
 
@@ -333,7 +353,8 @@ section.gradation--black .section-title {
     </div>
   </div>
 </section>
-<div class="step-divider fade-up"></div>
+<div class="step-divider"></div>
+
 
 
 
@@ -360,7 +381,8 @@ section.gradation--black .section-title {
     </div>
   </div>
 </section>
-<div class="step-divider fade-up"></div>
+<div class="step-divider"></div>
+
 
 
 <!-- =========================
@@ -386,7 +408,8 @@ section.gradation--black .section-title {
     </div>
   </div>
 </section>
-<div class="step-divider fade-up"></div>
+<div class="step-divider"></div>
+
 
 
 <!-- =========================
@@ -413,7 +436,8 @@ section.gradation--black .section-title {
     </div>
   </div>
 </section>
-<div class="step-divider fade-up"></div>
+<div class="step-divider"></div>
+
 
 
 <!-- =========================
@@ -439,7 +463,7 @@ section.gradation--black .section-title {
     </div>
   </div>
 </section>
-<div class="step-divider fade-up"></div>
+<div class="step-divider"></div>
 
 
 <!-- =========================
@@ -783,7 +807,6 @@ targets.forEach(el => observer.observe(el));
 </body>
 
 </html>
-
 
 
 
