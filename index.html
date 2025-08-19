@@ -292,7 +292,7 @@ section.has-divider::after {
 
 /* 特別ボックス（あなたの道は〜用） */
 .center-box {
-  text-align: center;
+  text-align: center;   /* PCでは中央寄せ */
   line-height: 1.4;
   background: linear-gradient(135deg, #3a0ca3, #4361ee);
   border: none;
@@ -301,6 +301,7 @@ section.has-divider::after {
   padding: 1.5rem 1.8rem;
   margin-bottom: 1.5rem;
 }
+
 .center-box h3 {
   background: none;
   color: #fff;
@@ -308,6 +309,14 @@ section.has-divider::after {
   font-weight: 700;
   margin: 0.3rem 0 0.6rem;
 }
+
+/* スマホ（480px以下）では左寄せに変更 */
+@media (max-width: 480px) {
+  .center-box {
+    text-align: left;
+  }
+}
+
 
 /* YouTube動画（OZMAN用など） */
 .modal__video {
