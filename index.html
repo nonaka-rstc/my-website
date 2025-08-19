@@ -323,6 +323,19 @@ section.has-divider::after {
   font-weight: 700;
   margin: 0.3rem 0 0.6rem;
 }
+.modal__video {
+  width: 100%;
+  max-width: 420px;   /* PCでの最大幅（控えめサイズ） */
+  margin: 0 auto;     /* 中央寄せ */
+}
+
+.modal__video iframe {
+  width: 100%;        /* 親要素いっぱいに広げる */
+  aspect-ratio: 16/9; /* YouTube標準比率を維持 */
+  height: auto;       /* 高さを自動調整 */
+  display: block;
+  border-radius: 6px; /* お好みで角丸 */
+}
 
 
 </style>
