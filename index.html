@@ -8,35 +8,43 @@
 <style>
 
 /* ========================================
-   0) Global Variables
+   0) カスタム変数（CSS変数）
    ======================================== */
 :root {
-  --grad-black: linear-gradient(135deg,#535353,#000000);
-  --grad-gray: linear-gradient(135deg,#fdfbfb,#ebedee);
-  --grad-bluepurple: linear-gradient(135deg,#3a0ca3,#4361ee);
-  --fallback-black:#0f0f10;
-  --fallback-gray:#f1f3f5;
-  --fallback-bluepurple:#3a0ca3;
+  /* グラデーション定義 */
+  --grad-black: linear-gradient(135deg, #535353, #000000);
+  --grad-gray: linear-gradient(135deg, #fdfbfb, #ebedee);
+  --grad-bluepurple: linear-gradient(135deg, #3a0ca3, #4361ee);
 
+  /* フォールバック用単色 */
+  --fallback-black: #0f0f10;
+  --fallback-gray: #f1f3f5;
+  --fallback-bluepurple: #3a0ca3;
+
+  /* スペーシング */
   --section-y: clamp(4rem, 8vw, 7rem);
   --container-x: clamp(1rem, 4vw, 2rem);
   --container-w: 1024px;
   --body-max: 72ch;
 
+  /* フォントサイズ */
   --fs-headline: clamp(2.2rem, 5vw, 3.2rem);
   --fs-title: clamp(1.9rem, 3.2vw, 2.4rem);
   --fs-subtitle: clamp(1.2rem, 2vw, 1.5rem);
   --fs-body: clamp(1.05rem, 1.7vw, 1.22rem);
 
+  /* 行間 */
   --lh-1: 1.25;
   --lh-2: 1.5;
   --lh-3: 1.75;
 
+  /* CTAボタン */
   --cta-pad-y: 0.55rem;
   --cta-pad-x: 1.2rem;
   --cta-radius: 8px;
   --cta-minw: 200px;
 
+  /* セクション間ギャップ */
   --gap-title-body-pc: 3rem;
   --gap-title-body-sp: 1.8rem;
   --closing-body-width: 60ch;
@@ -44,37 +52,60 @@
   --closing-body-leading: 1.7;
 }
 
+
 /* ========================================
-   1) Base
+   1) ベース設定（基本HTML要素）
    ======================================== */
-* { box-sizing:border-box }
-html,body { margin:0; padding:0 }
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  color:#333; line-height: var(--lh-3);
+  color: #333;
+  line-height: var(--lh-3);
   -webkit-font-smoothing: antialiased;
 }
-img { max-width:100%; height:auto; display:block }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-.gradation--black { background:var(--grad-black) }
-.gradation--gray { background:var(--grad-gray) }
-.gradation--bluepurple { background:var(--grad-bluepurple) }
-.on-dark { color:#fff !important }
 
 /* ========================================
-   2) Layout
+   2) グラデーション背景＆配色調整
    ======================================== */
-section { width:100%; padding: var(--section-y) var(--container-x) }
-.container { max-width: var(--container-w); margin-inline:auto }
+.gradation--black { background: var(--grad-black); }
+.gradation--gray { background: var(--grad-gray); }
+.gradation--bluepurple { background: var(--grad-bluepurple); }
+.on-dark { color: #fff !important; }
+
 
 /* ========================================
-   3) Typography
+   3) レイアウト構造
+   ======================================== */
+section {
+  width: 100%;
+  padding: var(--section-y) var(--container-x);
+}
+.container {
+  max-width: var(--container-w);
+  margin-inline: auto;
+}
+
+
+/* ========================================
+   4) タイポグラフィ
    ======================================== */
 .headline-title {
   font-size: var(--fs-headline);
   line-height: var(--lh-1);
   font-weight: 800;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
   margin: 0 0 1rem 0;
 }
 .section-title {
@@ -87,7 +118,7 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
   font-size: clamp(1.4rem, 2.2vw, 1.7rem);
   line-height: var(--lh-1);
   font-weight: 600;
-  color:#444;
+  color: #444;
   margin: 0 0 1rem 0;
 }
 .section-body {
@@ -96,92 +127,113 @@ section { width:100%; padding: var(--section-y) var(--container-x) }
   max-width: var(--body-max);
   margin: 0 0 2rem 0;
 }
-.section-body p { margin:0 0 .9rem 0 }
-.section-body p:last-child { margin-bottom:0 }
+.section-body p {
+  margin: 0 0 0.9rem 0;
+}
+.section-body p:last-child {
+  margin-bottom: 0;
+}
+
 
 /* ========================================
-   4) CTA Buttons
+   5) CTAボタン
    ======================================== */
-.cta-row { display:flex; gap:.8rem; flex-wrap:wrap }
+.cta-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
 .cta-btn {
   position: relative;
-  display:inline-block;
-  text-align:center;
+  display: inline-block;
+  text-align: center;
   padding: var(--cta-pad-y) var(--cta-pad-x);
   min-width: var(--cta-minw);
   border-radius: var(--cta-radius);
   font-weight: 600;
   font-size: 0.95rem;
-  text-decoration:none;
-  color:#fff;
-  overflow:hidden;
+  text-decoration: none;
+  color: #fff;
   background: var(--grad-black);
+  overflow: hidden;
   z-index: 0;
 }
 .cta-btn::after {
-  content:"";
-  position: absolute; inset:0;
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--grad-bluepurple);
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity 0.6s ease;
   z-index: -1;
 }
-.cta-btn:hover::after { opacity: 1 }
-.cta-btn:active { transform: translateY(1px) }
+.cta-btn:hover::after {
+  opacity: 1;
+}
+.cta-btn:active {
+  transform: translateY(1px);
+}
+
 
 /* ========================================
-   5) Headline / Closing
+   6) ヘッドライン・クロージングセクション
    ======================================== */
 .headline-section {
-  text-align:center;
+  text-align: center;
   padding-top: clamp(8rem, 13vw, 11rem);
   padding-bottom: clamp(6rem, 11vw, 9rem);
 }
-.headline-section .headline-title { margin-bottom: 5.5rem }
-.headline-section .section-body { margin-left:auto; margin-right:auto }
-
+.headline-section .headline-title {
+  margin-bottom: 5.5rem;
+}
+.headline-section .section-body {
+  margin-inline: auto;
+}
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
   line-height: 1.55;
 }
 section.gradation--black .section-title,
-section.gradation--black .section-subtitle { text-align: center }
+section.gradation--black .section-subtitle {
+  text-align: center;
+}
 section.gradation--black .section-body {
-  margin-left: auto; margin-right: auto; text-align: left;
+  margin-inline: auto;
+  text-align: left;
 }
 section.gradation--black .section-title {
   font-size: clamp(2.2rem, 4vw, 2.8rem);
   margin-bottom: 3rem;
 }
 
+
 /* ========================================
-   6) Modal
+   7) モーダル（Modal Window）
    ======================================== */
 .modal {
   position: fixed;
   inset: 0;
   display: none;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
   padding: 1rem;
   z-index: 9999;
 }
-.modal[aria-hidden="false"] { display: flex }
-
+.modal[aria-hidden="false"] {
+  display: flex;
+}
 .modal__panel {
   width: min(700px, 90vw);
   max-height: 90vh;
   background: #fff;
   border-radius: 16px;
-  /* 上だけ1rem → 白い隙間をもう少し残す */
   padding: 1rem clamp(1.25rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2rem);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-
 .modal__title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 800;
@@ -189,8 +241,7 @@ section.gradation--black .section-title {
   color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 10px 10px 0 0;
-  /* 上のマージンを0にして自然に配置 */
-  margin: 0 0 0.8rem 0;
+  margin: 0 0 0.5rem 0;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -198,7 +249,6 @@ section.gradation--black .section-title {
   justify-content: space-between;
   align-items: center;
 }
-
 .modal__body {
   flex: 1;
   font-size: var(--fs-body);
@@ -206,10 +256,11 @@ section.gradation--black .section-title {
   max-width: var(--body-max);
   overflow-y: auto;
   padding-right: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
-.modal__body p { margin: 0 0 .9rem 0 }
-
+.modal__body p {
+  margin: 0 0 0.9rem 0;
+}
 .modal__footer {
   margin-top: 1rem;
   position: sticky;
@@ -224,24 +275,18 @@ section.gradation--black .section-title {
   max-width: 250px;
   margin: 0 auto 0.4rem;
 }
-
-/* Modal Close Button */
 .modal__close {
   appearance: none;
   border: 0;
   background: transparent;
   color: #fff;
   font-size: 1.8rem;
-  font-weight: normal;
   cursor: pointer;
-  line-height: 1;
   margin-left: auto;
 }
 .modal__close:hover {
   color: #ff4081;
 }
-
-/* モーダル内画像 */
 .modal__image {
   text-align: center;
   margin: 1.2rem 0;
@@ -253,8 +298,6 @@ section.gradation--black .section-title {
   margin-bottom: 1rem;
   display: inline-block;
 }
-
-/* モーダル内YouTube動画 */
 .modal__video {
   position: relative;
   width: 100%;
@@ -274,21 +317,20 @@ section.gradation--black .section-title {
 }
 
 
-
 /* ========================================
-   7) Logo
+   8) ロゴ（左上固定）
    ======================================== */
 .logo {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
   width: 140px;
-  height: auto;
   min-width: 100px;
   max-width: 20vw;
+  height: auto;
   z-index: 10;
 }
-@media (max-width: 480px){
+@media (max-width: 480px) {
   .logo {
     width: 120px;
     top: 1rem;
@@ -296,8 +338,9 @@ section.gradation--black .section-title {
   }
 }
 
+
 /* ========================================
-   8) Scroll Animation
+   9) スクロール時アニメーション
    ======================================== */
 .fade-up {
   opacity: 0;
@@ -308,20 +351,14 @@ section.gradation--black .section-title {
   opacity: 1;
   transform: translateY(0);
 }
-/* Headline Body Copyだけ0.5秒遅延 */
-.headline-section .section-body.fade-up {
-  transition-delay: 0.7s;
-}
-
-/* Closing Body Copyも0.5秒遅延 */
+.headline-section .section-body.fade-up,
 .closing-section .section-body.fade-up {
   transition-delay: 0.7s;
 }
 
 
-
 /* ========================================
-   9) Step セクション（画像＋テキストレイアウト）
+   10) Stepレイアウト（画像＋テキスト）
    ======================================== */
 .step-image img {
   width: 100%;
@@ -338,7 +375,9 @@ section.gradation--black .section-title {
   flex-wrap: nowrap;
   margin-bottom: 2rem;
 }
-.step-text { flex: 1 1 60%; }
+.step-text {
+  flex: 1 1 60%;
+}
 .step-image {
   flex: 1 1 40%;
   text-align: right;
@@ -350,11 +389,14 @@ section.gradation--black .section-title {
     align-items: center;
     gap: 2rem;
   }
-  .step-image { display: none; }
+  .step-image {
+    display: none;
+  }
 }
 
+
 /* ========================================
-   10) Step Divider（三角形・擬似要素）
+   11) Step区切り（三角）
    ======================================== */
 section.has-divider {
   position: relative;
@@ -367,31 +409,36 @@ section.has-divider::after {
   transform: translateX(-50%) translateY(50%);
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-top: 30px solid #bbb; /* 大きめ三角形 */
+  border-top: 30px solid #bbb;
   z-index: 10;
 }
 
+
 /* ========================================
-   Modal専用CTAカラー
+   12) Modal CTAボタン配色
    ======================================== */
 .modal__footer .cta-btn {
-  background: linear-gradient(135deg,#3a0ca3,#4361ee); /* 通常：青紫グラデ */
+  background: linear-gradient(135deg, #3a0ca3, #4361ee);
 }
 .modal__footer .cta-btn::after {
-  background: linear-gradient(135deg,#7b2cbf,#ff4081); /* ホバー：赤紫グラデ */
+  background: linear-gradient(135deg, #7b2cbf, #ff4081);
 }
 
-/* Modal 内ハイライトボックス（淡い金色シンプル版） */
+
+/* ========================================
+   13) モーダル内強調ボックス（Floral White）
+   ======================================== */
 .highlight-box {
-  background: #fff8dc;   /* 薄い金色 */
+  background: #fffaf0;
+  color: #333;
   padding: 1rem;
   border-radius: 8px;
-  color: #333;           /* 読みやすい濃い文字色 */
   margin: 1.2rem 0;
 }
 
-
 </style>
+
+
 
 </head>
 
@@ -656,12 +703,18 @@ section.has-divider::after {
 
     <div class="modal__body">
 
+      <!-- ✅ 挿入画像（Step02_modal.png） -->
+      <div class="modal__image">
+        <img src="Step02_modal.png" alt="G検定・E資格のイメージ画像">
+      </div>
+
       <p>AIの学びを次の段階へ進めるのがStep02です。ここでは 「G検定」と「E資格」 に挑戦します。</p>
       <p>G検定 は、AIの基礎知識や活用事例を体系的に整理し、理解度を客観的に示せる資格です。基礎を固め、自信を持って語れる力につながります。</p>
 
-      <!-- ✨ 強調部分（淡金背景＋無料だけ赤字） -->
+      <!-- ✨ 強調エリア（淡金背景＋強調） -->
       <p class="highlight-box">
-        E資格 はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価します。受験には JDLA認定プログラムの修了が必須で、通常は十数万円規模の受講料が必要です。<br>
+        E資格 はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価します。受験には JDLA認定プログラムの修了が必須で、
+        <strong>通常は十数万円規模の受講料が必要です。</strong><br>
         現在リツアンは認定プログラム事業者となる準備を進めており、2026年初夏以降には、<strong>社員やキャリターン登録者が
         <span style="color:red">無料</span>で受講できる仕組みを整える予定です。</strong>
       </p>
@@ -677,6 +730,8 @@ section.has-divider::after {
     </div>
   </div>
 </div>
+
+
 
 
 
@@ -803,7 +858,29 @@ section.has-divider::after {
 
 
 
-<!-- Step06 -->
+<!-- Step06 セクション -->
+<section id="step06" class="gradation--gray">
+  <div class="container">
+    <div class="step-row">
+      <div class="step-text section-body fade-up">
+        <h2 class="section-title fade-up">Step06｜それぞれのゴール</h2>
+        <div class="section-subtitle fade-up">飛び立つ未来</div>
+        <p><strong>ここからは、あなたが選ぶ番です。</strong></p>
+        <p>6つのステップを駆け抜けたあなたは、AI時代を戦える力を手にしました。</p>
+        <p>年収や待遇を上げる。新しい舞台に挑戦する。理想を形にして独立する。</p>
+        <p>どの道を選んでも、それはあなたが掴み取った正解です。</p>
+        <div class="cta-row">
+          <a href="#" class="cta-btn" onclick="openModal('m-s6');return false;">昇給、転職、独立</a>
+        </div>
+      </div>
+      <div class="step-image fade-up">
+        <img src="step06.png" alt="Step06 イメージ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Step06 Modal -->
 <div class="modal" id="m-s6" aria-hidden="true" role="dialog" aria-modal="true" aria-label="昇給、転職、独立">
   <div class="modal__panel">
     <div class="modal__title">
@@ -812,50 +889,46 @@ section.has-divider::after {
     </div>
 
     <div class="modal__body">
-      <h3>昇給する</h3>
-      <p>
-        リツアンは新たに、AI開発・ソリューション事業に特化した新会社を立ち上げます。ここではエンドユーザーと直接契約する「元請けポジション」を確立し、報酬の基準を下請け単価ではなく元請け単価に設定します。これにより、派遣やSESに比べて大幅な収入アップが見込めます。努力と成果がそのままの給与に反映される仕組みです。
-      </p>
+      <h3>昇給する ― 商流を上がり、より高く評価される場所へ</h3>
+      <p>ロードマップを修了したあなたは、もう「AIを学んだ人」ではなく「AIで成果を出せる人」になっています。<br>
+      次に待つのは、リツアンが立ち上げるAI開発専門の新会社。ここはエンドユーザーから直接案件を受ける
+      <strong>元請けポジション</strong>です。<br>
+      下請け単価ではなく、<strong>元請け単価で報酬が決まる</strong>ため、昇給が見込まれます。<br>
+      移籍できるのは、AI活用・実装の実力を備えた人材から。努力が、これまで以上に<strong>より高く評価される仕組み</strong>です。</p>
 
-      <p>
-        新会社への移行は、ロードマップを修了し「AIを理解し、実装・活用できる人材」へ成長したメンバーから順に進めます。特に、プロジェクトの責任者やリーダーとして力を発揮できる人が中心となります。学びを積み重ねることで自然に次のステージへの扉が開き、収入アップにもつながっていく――そんな流れを描いています。
-      </p>
+      <h3>転職する ― 市場価値を広げるキャリアブリッジ</h3>
+      <p>ロードマップを修了した人材は、AI・データ解析・IoT・クラウドといったDX推進の力を備えています。<br>
+      リツアンは単なる転職エージェントではなく、<strong>キャリアブリッジ</strong>として数百社のネットワークを活用。<br>
+      主要取引先には大手メーカーやグローバル企業が並びます（
+      <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">取引先一覧</a>）。<br><br>
+      支援は「キャリアシート整備」「面接対策」に留まりません。<br>
+      <strong>紹介予定派遣</strong>というオプションもあり、まずは派遣で相性を確認し、納得できれば正社員へ進むことも可能です。<br>
+      さらに<strong>出戻り制度</strong>があるので、挑戦のあとでも安心して戻れる場所があります。</p>
 
-      <p>
-        将来的には、新会社がエンドユーザーから直接案件を受注し、その案件に必要な人材を本体のリツアンから調達する循環モデルを構築します。優秀な責任者やリーダーが案件をリードし、他のリツアン社員を巻き込みながら開発を進めることで、グループ全体が成長していく仕組みを目指します。
-      </p>
+      <h3>独立する ― 小さなCEOとして挑戦する</h3>
+      <p>もっと自由に働きたい、自分で事業をつくりたい。そんなあなたにはリツアンの<strong>小さなCEO制度</strong>があります。<br>
+      これは単なるフリーランス支援ではなく、法人を立ち上げ「経営者」として挑戦する仕組みです。<br>
+      詳しくはこちら →
+      <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度</a><br><br>
+      制度の特徴は、<br>
+      ・高単価案件を超低マージンで提供<br>
+      ・会計・法務などバックオフィス支援<br>
+      ・チーム化とマネジメント報酬<br>
+      ・経営ノウハウやスケール戦略の提供<br><br>
+      エンジニアとしての力を土台にしながら、仲間を呼び、事業を育てる自由と責任を手にできます。</p>
 
-      <hr>
-
-<h3>転職する</h3>
-<p>
-  経産省の試算では、2030年に日本国内で最大79万人のIT・AI人材が不足するとされています。足りないのは単なる開発要員ではなく、AI・IoT・クラウド・データ解析といった最新技術を学び活用できる人材や、DXを推進して業務やビジネスモデルを変革できる人材です。こうした「技術 × ビジネス × マネジメント」を兼ね備えた人材は市場で高く評価され、転職市場でも大きなプレミアムがつきます。
-</p>
-
-<p>
-  リツアンは
-  <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">
-    数百社を超える大手企業やAIスタートアップ
-  </a>
-  と提携し、希望者を最適な職場へとつなぐキャリアブリッジの役割を担います。具体的には、キャリアシートの整備、推薦文の作成、面接対策（行動事例面接＝BEI）のサポートを提供し、あなたの強みを正しく伝える環境を整えます。さらに、転職後のフォローアップ体制も設け、キャリアの定着と成長を長期的に後押しします。
-</p>
-      <hr>
-
-<h3>独立する</h3>
-<p>
-  リツアンはフリーランス支援に加え、法人化を目指すエンジニアに向けて
-  <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度</a>
-  を進めています。これは、チームを率いてマネジメントに挑戦し、報酬の幅を広げられる仕組みです。
-</p>
-
-<p>
-  フリーランスが直面しがちな「時間と体力に縛られる限界」を突破し、仲間と共にスケールの大きい事業をつくれるのが特長です。リスクを抑えつつ、案件紹介・バックオフィス支援・経営ノウハウの提供を組み合わせ、安心して自分のビジネスを育てられる環境を整えています。
-</p>
+      <h3>あなたの道は、あなたが決める</h3>
+      <p>昇給、転職、独立。どの道も正解です。<br>
+      リツアンは、あなたの挑戦をいつでも支え続けます。</p>
     </div>
 
     <div class="modal__footer"></div>
   </div>
 </div>
+
+</script>
+
+
 
 
 
