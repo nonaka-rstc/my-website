@@ -177,16 +177,30 @@ section.gradation--black .section-body {
 }
 .modal__title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800; background: var(--grad-black); color: #fff;
-  padding: 0.8rem 1rem; border-radius: 10px 10px 0 0;
-  margin: 0 0 0.5rem 0; position: sticky; top: 0;
-  z-index: 1; display: flex; justify-content: space-between; align-items: center;
+  font-weight: 800;
+  background: var(--grad-black);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px 10px 0 0;
+  margin: 0 0 0.3rem 0;              /* ▼ 下余白を 0.5rem → 0.3rem に圧縮 */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .modal__body {
-  flex: 1; font-size: var(--fs-body); line-height: 1.6;
-  max-width: var(--body-max); overflow-y: auto;
-  padding-right: 0.5rem; margin-top: 1rem;
+  flex: 1;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  max-width: var(--body-max);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-top: 0.5rem;                /* ▼ 上余白を 1rem → 0.5rem に圧縮 */
 }
+
 .modal__body p { margin: 0 0 0.9rem 0; }
 .modal__footer {
   margin-top: 1rem; position: sticky; bottom: 0;
