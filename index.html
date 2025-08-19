@@ -168,6 +168,7 @@ section.gradation--black .section-body {
   padding: 1rem; z-index: 9999;
 }
 .modal[aria-hidden="false"] { display: flex; }
+
 .modal__panel {
   width: min(700px, 90vw); max-height: 90vh;
   background: #fff; border-radius: 16px;
@@ -182,13 +183,9 @@ section.gradation--black .section-body {
   color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 10px 10px 0 0;
-  margin: 0 0 0.3rem 0;              /* ▼ 下余白を 0.5rem → 0.3rem に圧縮 */
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin: 0 0 0.3rem 0; /* 下余白を圧縮 */
+  position: sticky; top: 0; z-index: 1;
+  display: flex; justify-content: space-between; align-items: center;
 }
 
 .modal__body {
@@ -198,40 +195,44 @@ section.gradation--black .section-body {
   max-width: var(--body-max);
   overflow-y: auto;
   padding-right: 0.5rem;
-  margin-top: 0.5rem;                /* ▼ 上余白を 1rem → 0.5rem に圧縮 */
+  margin-top: 0.5rem; /* 上余白を圧縮 */
 }
-
 .modal__body p { margin: 0 0 0.9rem 0; }
+
 .modal__footer {
   margin-top: 1rem; position: sticky; bottom: 0;
   background: #fff; padding-top: 0.2rem;
   z-index: 1; display: block;
 }
-.modal__footer .cta-btn { display: block; max-width: 250px; margin: 0 auto 0.4rem; }
+.modal__footer .cta-btn {
+  display: block; max-width: 250px; margin: 0 auto 0.4rem;
+}
+
 .modal__close {
   appearance: none; border: 0; background: transparent;
   color: #fff; font-size: 1.8rem; cursor: pointer; margin-left: auto;
 }
 .modal__close:hover { color: #ff4081; }
+
 .modal__image {
   text-align: center;
   margin: 1.2rem 0;
 }
-
 .modal__image img {
-  max-width: 70%;
+  max-width: 70%;       /* ← 少し大きめに変更 */
   border-radius: 8px;
-  margin: 0 auto 1rem;  /* ★中央寄せ */
-  display: block;       /* ★block化でmargin autoを効かせる */
+  margin: 0 auto 1rem;
+  display: block;
 }
-
 
 
 /* ========================================
    8) 補足要素
    ======================================== */
 .logo { position: absolute; top: 1.5rem; left: 1.5rem; width: 140px; max-width: 20vw; z-index: 10; }
-@media (max-width: 480px) { .logo { width: 120px; top: 1rem; left: 1rem; } }
+@media (max-width: 480px) {
+  .logo { width: 120px; top: 1rem; left: 1rem; }
+}
 
 .fade-up { opacity: 0; transform: translateY(50px); transition: all 1.3s ease-out; }
 .fade-up.show { opacity: 1; transform: translateY(0); }
@@ -240,22 +241,21 @@ section.gradation--black .section-body {
 .step-row { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: nowrap; margin-bottom: 2rem; }
 .step-text { flex: 1 1 60%; }
 .step-image { flex: 1 1 40%; text-align: right; margin-top: 3rem; }
-@media (max-width: 768px) { .step-row { flex-direction: column; align-items: center; gap: 2rem; } .step-image { display: none; } }
+@media (max-width: 768px) {
+  .step-row { flex-direction: column; align-items: center; gap: 2rem; }
+  .step-image { display: none; }
+}
 
 section.has-divider { position: relative; }
 section.has-divider::after {
   content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) translateY(50%); /* 半分だけ出す */
+  position: absolute; left: 50%; bottom: 0;
+  transform: translateX(-50%) translateY(50%);
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 30px solid #bbb;
   z-index: 2;
 }
-
-
 
 
 /* ========================================
@@ -272,39 +272,14 @@ section.has-divider::after {
 
 /* 共通ボックス（昇給・転職・独立用） */
 .box {
-  border: 1px solid #ccc;     /* 細いグレーの枠線 */
-  border-radius: 8px;         /* 角を少し丸める */
-  padding: 1rem 1.2rem;       /* 内側の余白 */
-  margin-bottom: 1rem;      /* 下に余白を確保 */
-  background: #fff;           /* 白背景 */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  background: #fff;
 }
 
 /* ボックス内の見出し（昇給・転職・独立） */
-.box h3 {
-  margin: 0.5rem 0 0.8rem;    /* 上下の余白を調整 */
-  font-size: 1.3rem;         /* 本文より大きめに強調 */
-  font-weight: 700;           /* 太めでしっかり見せる */
-}
-
-/* 特別ボックス（あなたの道は～用） */
-.center-box {
-  text-align: center;  
-  line-height: 1.4;
-  background: linear-gradient(135deg, #3a0ca3, #4361ee); /* 常時青紫グラデ */
-  border: none;                                          /* 枠線なし */
-  color: #fff;                                           /* テキスト白 */
-  border-radius: 8px;
-  padding: 1.5rem 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.center-box h3 {
-  margin: 0.3rem 0 0.6rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #fff;  /* 見出しも白 */
-}
-/* 共通：昇給・転職・独立のh3はグラデ背景＋白文字 */
 .box h3 {
   margin: 0.5rem 0 0.8rem;
   font-size: 1.3rem;
@@ -315,26 +290,44 @@ section.has-divider::after {
   border-radius: 6px;
 }
 
-/* 特別ボックス（あなたの道は…）は白文字のみ */
+/* 特別ボックス（あなたの道は〜用） */
+.center-box {
+  text-align: center;
+  line-height: 1.4;
+  background: linear-gradient(135deg, #3a0ca3, #4361ee);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+}
 .center-box h3 {
-  background: none;   /* グラデ背景を無効化 */
-  color: #fff;        /* 白文字だけ */
-  font-size: 1.6rem;  /* 少し大きめでまとめ感を演出 */
+  background: none;
+  color: #fff;
+  font-size: 1.6rem;
   font-weight: 700;
   margin: 0.3rem 0 0.6rem;
 }
+
+/* YouTube動画（OZMAN用など） */
 .modal__video {
   width: 100%;
-  max-width: 420px;   /* PCでの最大幅（控えめサイズ） */
-  margin: 0 auto;     /* 中央寄せ */
+  max-width: 420px;  /* PCでは控えめサイズ */
+  margin: 0 auto;
+}
+.modal__video iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+  display: block;
+  border-radius: 6px;
 }
 
-.modal__video iframe {
-  width: 100%;        /* 親要素いっぱいに広げる */
-  aspect-ratio: 16/9; /* YouTube標準比率を維持 */
-  height: auto;       /* 高さを自動調整 */
-  display: block;
-  border-radius: 6px; /* お好みで角丸 */
+/* スマホ用にさらに縮小 */
+@media (max-width: 480px) {
+  .modal__video {
+    max-width: 320px;
+  }
 }
 
 
