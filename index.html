@@ -11,40 +11,33 @@
    0) カスタム変数（CSS変数）
    ======================================== */
 :root {
-  /* グラデーション定義 */
   --grad-black: linear-gradient(135deg, #535353, #000000);
   --grad-gray: linear-gradient(135deg, #fdfbfb, #ebedee);
   --grad-bluepurple: linear-gradient(135deg, #3a0ca3, #4361ee);
 
-  /* フォールバック用単色 */
   --fallback-black: #0f0f10;
   --fallback-gray: #f1f3f5;
   --fallback-bluepurple: #3a0ca3;
 
-  /* スペーシング */
   --section-y: clamp(4rem, 8vw, 7rem);
   --container-x: clamp(1rem, 4vw, 2rem);
   --container-w: 1024px;
   --body-max: 72ch;
 
-  /* フォントサイズ */
   --fs-headline: clamp(2.2rem, 5vw, 3.2rem);
   --fs-title: clamp(1.9rem, 3.2vw, 2.4rem);
   --fs-subtitle: clamp(1.2rem, 2vw, 1.5rem);
   --fs-body: clamp(1.05rem, 1.7vw, 1.22rem);
 
-  /* 行間 */
   --lh-1: 1.25;
   --lh-2: 1.5;
   --lh-3: 1.75;
 
-  /* CTAボタン */
   --cta-pad-y: 0.55rem;
   --cta-pad-x: 1.2rem;
   --cta-radius: 8px;
   --cta-minw: 200px;
 
-  /* セクション間ギャップ */
   --gap-title-body-pc: 3rem;
   --gap-title-body-sp: 1.8rem;
   --closing-body-width: 60ch;
@@ -54,30 +47,21 @@
 
 
 /* ========================================
-   1) ベース設定（基本HTML要素）
+   1) ベース設定
    ======================================== */
-* {
-  box-sizing: border-box;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
   color: #333;
   line-height: var(--lh-3);
   -webkit-font-smoothing: antialiased;
 }
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
 
 
 /* ========================================
-   2) グラデーション背景＆配色調整
+   2) 背景グラデーション
    ======================================== */
 .gradation--black { background: var(--grad-black); }
 .gradation--gray { background: var(--grad-gray); }
@@ -86,16 +70,10 @@ img {
 
 
 /* ========================================
-   3) レイアウト構造
+   3) レイアウト
    ======================================== */
-section {
-  width: 100%;
-  padding: var(--section-y) var(--container-x);
-}
-.container {
-  max-width: var(--container-w);
-  margin-inline: auto;
-}
+section { width: 100%; padding: var(--section-y) var(--container-x); }
+.container { max-width: var(--container-w); margin-inline: auto; }
 
 
 /* ========================================
@@ -105,7 +83,6 @@ section {
   font-size: var(--fs-headline);
   line-height: var(--lh-1);
   font-weight: 800;
-  letter-spacing: 0.01em;
   margin: 0 0 1rem 0;
 }
 .section-title {
@@ -116,7 +93,6 @@ section {
 }
 .section-subtitle {
   font-size: clamp(1.4rem, 2.2vw, 1.7rem);
-  line-height: var(--lh-1);
   font-weight: 600;
   color: #444;
   margin: 0 0 1rem 0;
@@ -127,81 +103,46 @@ section {
   max-width: var(--body-max);
   margin: 0 0 2rem 0;
 }
-.section-body p {
-  margin: 0 0 0.9rem 0;
-}
-.section-body p:last-child {
-  margin-bottom: 0;
-}
+.section-body p { margin: 0 0 0.9rem 0; }
+.section-body p:last-child { margin-bottom: 0; }
 
 
 /* ========================================
    5) CTAボタン
    ======================================== */
-.cta-row {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
+.cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .cta-btn {
-  position: relative;
-  display: inline-block;
-  text-align: center;
+  position: relative; display: inline-block; text-align: center;
   padding: var(--cta-pad-y) var(--cta-pad-x);
   min-width: var(--cta-minw);
   border-radius: var(--cta-radius);
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  color: #fff;
+  font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; color: #fff;
   background: var(--grad-black);
-  overflow: hidden;
-  z-index: 0;
+  overflow: hidden; z-index: 0;
 }
 .cta-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--grad-bluepurple);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: -1;
+  content: ""; position: absolute; inset: 0;
+  background: var(--grad-bluepurple); opacity: 0;
+  transition: opacity 0.6s ease; z-index: -1;
 }
-.cta-btn:hover::after {
-  opacity: 1;
-}
-.cta-btn:active {
-  transform: translateY(1px);
-}
+.cta-btn:hover::after { opacity: 1; }
+.cta-btn:active { transform: translateY(1px); }
 
 
 /* ========================================
-   6) ヘッドライン・クロージングセクション
+   6) ヘッドライン・クロージング
    ======================================== */
-.headline-section {
-  text-align: center;
-  padding-top: clamp(8rem, 13vw, 11rem);
-  padding-bottom: clamp(6rem, 11vw, 9rem);
-}
-.headline-section .headline-title {
-  margin-bottom: 5.5rem;
-}
-.headline-section .section-body {
-  margin-inline: auto;
-}
+.headline-section { text-align: center; padding-top: clamp(8rem, 13vw, 11rem); padding-bottom: clamp(6rem, 11vw, 9rem); }
+.headline-section .headline-title { margin-bottom: 5.5rem; }
+.headline-section .section-body { margin-inline: auto; }
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
   line-height: 1.55;
 }
 section.gradation--black .section-title,
-section.gradation--black .section-subtitle {
-  text-align: center;
-}
-section.gradation--black .section-body {
-  margin-inline: auto;
-  text-align: left;
-}
+section.gradation--black .section-subtitle { text-align: center; }
 section.gradation--black .section-title {
   font-size: clamp(2.2rem, 4vw, 2.8rem);
   margin-bottom: 3rem;
@@ -209,214 +150,82 @@ section.gradation--black .section-title {
 
 
 /* ========================================
-   7) モーダル（Modal Window）
+   7) モーダル（統一版）
    ======================================== */
 .modal {
-  position: fixed;
-  inset: 0;
-  display: none;
+  position: fixed; inset: 0; display: none;
   background: rgba(0, 0, 0, 0.5);
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 9999;
+  align-items: center; justify-content: center;
+  padding: 1rem; z-index: 9999;
 }
-.modal[aria-hidden="false"] {
-  display: flex;
-}
+.modal[aria-hidden="false"] { display: flex; }
 .modal__panel {
-  width: min(700px, 90vw);
-  max-height: 90vh;
-  background: #fff;
-  border-radius: 16px;
+  width: min(700px, 90vw); max-height: 90vh;
+  background: #fff; border-radius: 16px;
   padding: 1rem clamp(1.25rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2rem);
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   overflow: hidden;
 }
 .modal__title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800;
-  background: var(--grad-black);
-  color: #fff;
-  padding: 0.8rem 1rem;
-  border-radius: 10px 10px 0 0;
-  margin: 0 0 0.5rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-weight: 800; background: var(--grad-black); color: #fff;
+  padding: 0.8rem 1rem; border-radius: 10px 10px 0 0;
+  margin: 0 0 0.5rem 0; position: sticky; top: 0;
+  z-index: 1; display: flex; justify-content: space-between; align-items: center;
 }
 .modal__body {
-  flex: 1;
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  max-width: var(--body-max);
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  margin-top: 1rem;
+  flex: 1; font-size: var(--fs-body); line-height: 1.6;
+  max-width: var(--body-max); overflow-y: auto;
+  padding-right: 0.5rem; margin-top: 1rem;
 }
-.modal__body p {
-  margin: 0 0 0.9rem 0;
-}
+.modal__body p { margin: 0 0 0.9rem 0; }
 .modal__footer {
-  margin-top: 1rem;
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding-top: 0.2rem;
-  z-index: 1;
-  display: block;
+  margin-top: 1rem; position: sticky; bottom: 0;
+  background: #fff; padding-top: 0.2rem;
+  z-index: 1; display: block;
 }
-.modal__footer .cta-btn {
-  display: block;
-  max-width: 250px;
-  margin: 0 auto 0.4rem;
-}
+.modal__footer .cta-btn { display: block; max-width: 250px; margin: 0 auto 0.4rem; }
 .modal__close {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-  margin-left: auto;
+  appearance: none; border: 0; background: transparent;
+  color: #fff; font-size: 1.8rem; cursor: pointer; margin-left: auto;
 }
-.modal__close:hover {
-  color: #ff4081;
-}
-.modal__image {
-  text-align: center;
-  margin: 1.2rem 0;
-}
-.modal__image img {
-  max-width: 60%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  display: inline-block;
-}
-.modal__video {
-  position: relative;
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 16/9;
-  margin: 1rem auto;
-}
-.modal__video iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-}
-@media (max-width: 480px) {
-  .modal__video {
-    max-width: 280px;
-  }
-}
+.modal__close:hover { color: #ff4081; }
+.modal__image { text-align: center; margin: 1.2rem 0; }
+.modal__image img { max-width: 60%; border-radius: 8px; margin-bottom: 1rem; }
+.modal__video { position: relative; width: 100%; max-width: 360px; aspect-ratio: 16/9; margin: 1rem auto; }
+.modal__video iframe { width: 100%; height: 100%; border-radius: 8px; }
+@media (max-width: 480px) { .modal__video { max-width: 280px; } }
 
 
 /* ========================================
-   8) ロゴ（左上固定）
+   8) 補足要素
    ======================================== */
-.logo {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  width: 140px;
-  min-width: 100px;
-  max-width: 20vw;
-  height: auto;
-  z-index: 10;
-}
-@media (max-width: 480px) {
-  .logo {
-    width: 120px;
-    top: 1rem;
-    left: 1rem;
-  }
-}
+.logo { position: absolute; top: 1.5rem; left: 1.5rem; width: 140px; max-width: 20vw; z-index: 10; }
+@media (max-width: 480px) { .logo { width: 120px; top: 1rem; left: 1rem; } }
 
+.fade-up { opacity: 0; transform: translateY(50px); transition: all 1.3s ease-out; }
+.fade-up.show { opacity: 1; transform: translateY(0); }
 
-/* ========================================
-   9) スクロール時アニメーション
-   ======================================== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.3s ease-out;
-}
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-.headline-section .section-body.fade-up,
-.closing-section .section-body.fade-up {
-  transition-delay: 0.7s;
-}
+.step-image img { width: 100%; max-width: 320px; }
+.step-row { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: nowrap; margin-bottom: 2rem; }
+.step-text { flex: 1 1 60%; }
+.step-image { flex: 1 1 40%; text-align: right; margin-top: 3rem; }
+@media (max-width: 768px) { .step-row { flex-direction: column; align-items: center; gap: 2rem; } .step-image { display: none; } }
 
-
-/* ========================================
-   10) Stepレイアウト（画像＋テキスト）
-   ======================================== */
-.step-image img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-}
-.step-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4rem;
-  flex-wrap: nowrap;
-  margin-bottom: 2rem;
-}
-.step-text {
-  flex: 1 1 60%;
-}
-.step-image {
-  flex: 1 1 40%;
-  text-align: right;
-  margin-top: 3rem;
-}
-@media (max-width: 768px) {
-  .step-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  .step-image {
-    display: none;
-  }
-}
-
-
-/* ========================================
-   11) Step区切り（三角）
-   ======================================== */
-section.has-divider {
-  position: relative;
-}
+section.has-divider { position: relative; }
 section.has-divider::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
+  content: ""; position: absolute; left: 50%; bottom: 0;
   transform: translateX(-50%) translateY(50%);
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
+  border-left: 30px solid transparent; border-right: 30px solid transparent;
   border-top: 30px solid #bbb;
-  z-index: 10;
 }
 
 
 /* ========================================
-   12) Modal CTAボタン配色
+   9) モーダル内カスタム
    ======================================== */
+
+/* フッター内のCTAボタン（青～紫のグラデーション） */
 .modal__footer .cta-btn {
   background: linear-gradient(135deg, #3a0ca3, #4361ee);
 }
@@ -424,16 +233,41 @@ section.has-divider::after {
   background: linear-gradient(135deg, #7b2cbf, #ff4081);
 }
 
+/* 共通ボックス（昇給・転職・独立用） */
+.box {
+  border: 1px solid #ccc;     /* 細いグレーの枠線 */
+  border-radius: 8px;         /* 角を少し丸める */
+  padding: 1rem 1.2rem;       /* 内側の余白 */
+  margin-bottom: 1.5rem;      /* 下に余白を確保 */
+  background: #fff;           /* 白背景 */
+}
 
-/* ========================================
-   13) モーダル内強調ボックス（Floral White）
-   ======================================== */
-.highlight-box {
-  background: #fffaf0;
-  color: #333;
-  padding: 1rem;
+/* ボックス内の見出し（昇給・転職・独立） */
+.box h3 {
+  margin: 0.5rem 0 0.8rem;    /* 上下の余白を調整 */
+  font-size: 1.75rem;         /* 本文より大きめに強調 */
+  font-weight: 700;           /* 太めでしっかり見せる */
+}
+
+/* 特別ボックス（あなたの道は～用） */
+.center-box {
+  text-align: center;         /* テキスト中央揃え */
+  line-height: 1.4;           /* 行間をやや詰める */
+  background: #fffaf0;        /* E資格と同じ淡金色の背景 */
+  border: 1px solid #ddd;     /* 薄めの枠線 */
   border-radius: 8px;
-  margin: 1.2rem 0;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.center-box h3 {
+  margin: 0.3rem 0 0.6rem;    /* 見出しと本文の間隔 */
+  font-size: 1.6rem;          /* やや大きめ */
+  font-weight: 700;           /* 力強さを出す */
+}
+
+/* Body内の <strong> を通常の太さに */
+.modal__body strong {
+  font-weight: normal;
 }
 
 </style>
@@ -888,43 +722,49 @@ section.has-divider::after {
       <button class="modal__close" onclick="closeModal('m-s6')" aria-label="閉じる">×</button>
     </div>
 
-    <div class="modal__body">
-      <h3>昇給する ― 商流を上がり、より高く評価される場所へ</h3>
-      <p>ロードマップを修了したあなたは、もう「AIを学んだ人」ではなく「AIで成果を出せる人」になっています。<br>
-      次に待つのは、リツアンが立ち上げるAI開発専門の新会社。ここはエンドユーザーから直接案件を受ける
-      <strong>元請けポジション</strong>です。<br>
-      下請け単価ではなく、<strong>元請け単価で報酬が決まる</strong>ため、昇給が見込まれます。<br>
-      移籍できるのは、AI活用・実装の実力を備えた人材から。努力が、これまで以上に<strong>より高く評価される仕組み</strong>です。</p>
+<div class="modal__body">
 
-      <h3>転職する ― 市場価値を広げるキャリアブリッジ</h3>
-      <p>ロードマップを修了した人材は、AI・データ解析・IoT・クラウドといったDX推進の力を備えています。<br>
-      リツアンは単なる転職エージェントではなく、<strong>キャリアブリッジ</strong>として数百社のネットワークを活用。<br>
-      主要取引先には大手メーカーやグローバル企業が並びます（
-      <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">取引先一覧</a>）。<br><br>
-      支援は「キャリアシート整備」「面接対策」に留まりません。<br>
-      <strong>紹介予定派遣</strong>というオプションもあり、まずは派遣で相性を確認し、納得できれば正社員へ進むことも可能です。<br>
-      さらに<strong>出戻り制度</strong>があるので、挑戦のあとでも安心して戻れる場所があります。</p>
-
-      <h3>独立する ― 小さなCEOとして挑戦する</h3>
-      <p>もっと自由に働きたい、自分で事業をつくりたい。そんなあなたにはリツアンの<strong>小さなCEO制度</strong>があります。<br>
-      これは単なるフリーランス支援ではなく、法人を立ち上げ「経営者」として挑戦する仕組みです。<br>
-      詳しくはこちら →
-      <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度</a><br><br>
-      制度の特徴は、<br>
-      ・高単価案件を超低マージンで提供<br>
-      ・会計・法務などバックオフィス支援<br>
-      ・チーム化とマネジメント報酬<br>
-      ・経営ノウハウやスケール戦略の提供<br><br>
-      エンジニアとしての力を土台にしながら、仲間を呼び、事業を育てる自由と責任を手にできます。</p>
-
-      <h3>あなたの道は、あなたが決める</h3>
-      <p>昇給、転職、独立。どの道も正解です。<br>
-      リツアンは、あなたの挑戦をいつでも支え続けます。</p>
-    </div>
-
-    <div class="modal__footer"></div>
+  <div class="box">
+    <h3>昇給</h3>
+    <p>ロードマップを修了したあなたは、もう「AIを学んだ人」ではなく「AIで成果を出せる人」になっています。<br>
+    次に待つのは、リツアンが立ち上げるAI開発専門の新会社。ここはエンドユーザーから直接案件を受ける
+    <strong>元請けポジション</strong>です。<br>
+    下請け単価ではなく、<strong>元請け単価で報酬が決まる</strong>ため、昇給が見込まれます。<br>
+    移籍できるのは、AI活用・実装の実力を備えた人材から。努力が、これまで以上に<strong>より高く評価される仕組み</strong>です。</p>
   </div>
+
+  <div class="box">
+    <h3>転職</h3>
+    <p>ロードマップを修了した人材は、AI・データ解析・IoT・クラウドといったDX推進の力を備えています。<br>
+    リツアンは単なる転職エージェントではなく、<strong>キャリアブリッジ</strong>として数百社のネットワークを活用。<br>
+    主要取引先には大手メーカーやグローバル企業が並びます（
+    <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">取引先一覧</a>）。<br><br>
+    支援は「キャリアシート整備」「面接対策」に留まりません。<br>
+    <strong>紹介予定派遣</strong>というオプションもあり、まずは派遣で相性を確認し、納得できれば正社員へ進むことも可能です。<br>
+    さらに<strong>出戻り制度</strong>があるので、挑戦のあとでも安心して戻れる場所があります。</p>
+  </div>
+
+  <div class="box">
+    <h3>独立</h3>
+    <p>もっと自由に働きたい、自分で事業をつくりたい。そんなあなたにはリツアンの<strong>小さなCEO制度</strong>があります。<br>
+    これは単なるフリーランス支援ではなく、法人を立ち上げ「経営者」として挑戦する仕組みです。<br>
+    詳しくはこちら →
+    <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度</a><br><br>
+    制度の特徴は、<br>
+    ・高単価案件を超低マージンで提供<br>
+    ・会計・法務などバックオフィス支援<br>
+    ・チーム化とマネジメント報酬<br>
+    ・経営ノウハウやスケール戦略の提供<br><br>
+    エンジニアとしての力を土台にしながら、仲間を呼び、事業を育てる自由と責任を手にできます。</p>
+  </div>
+
+<div class="box center-box">
+  <h3>あなたの道は、あなたが決める</h3>
+  <p>昇給、転職、独立。どの道も正解です。</p>
+  <p>リツアンは、あなたの挑戦をいつでも支え続けます。</p>
 </div>
+
+
 
 </script>
 
