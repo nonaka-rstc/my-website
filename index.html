@@ -230,11 +230,18 @@ section.gradation--black .section-body {
 
 section.has-divider { position: relative; }
 section.has-divider::after {
-  content: ""; position: absolute; left: 50%; bottom: 0;
-  transform: translateX(-50%) translateY(50%);
-  border-left: 30px solid transparent; border-right: 30px solid transparent;
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(50%); /* 半分だけ出す */
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
   border-top: 30px solid #bbb;
+  z-index: 2;
 }
+
+
 
 
 /* ========================================
@@ -816,6 +823,5 @@ targets.forEach(el => observer.observe(el));
 </body>
 
 </html>
-
 
 
