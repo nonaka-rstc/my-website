@@ -6,7 +6,6 @@
 <title>AI時代を生き抜くロードマップ｜リツアンSTC</title>
 
 <style>
-
 /* ========================================
    0) カスタム変数（CSS変数）
    ======================================== */
@@ -45,7 +44,6 @@
   --closing-body-leading: 1.7;
 }
 
-
 /* ========================================
    1) ベース設定
    ======================================== */
@@ -59,7 +57,6 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 
-
 /* ========================================
    2) 背景グラデーション
    ======================================== */
@@ -68,13 +65,16 @@ img { max-width: 100%; height: auto; display: block; }
 .gradation--bluepurple { background: var(--grad-bluepurple); }
 .on-dark { color: #fff !important; }
 
-
 /* ========================================
    3) レイアウト
    ======================================== */
 section { width: 100%; padding: var(--section-y) var(--container-x); }
 .container { max-width: var(--container-w); margin-inline: auto; }
 
+/* reverseクラス追加 */
+.step-row.reverse {
+  flex-direction: row-reverse;
+}
 
 /* ========================================
    4) タイポグラフィ
@@ -106,7 +106,6 @@ section { width: 100%; padding: var(--section-y) var(--container-x); }
 .section-body p { margin: 0 0 0.9rem 0; }
 .section-body p:last-child { margin-bottom: 0; }
 
-
 /* ========================================
    5) CTAボタン
    ======================================== */
@@ -129,7 +128,6 @@ section { width: 100%; padding: var(--section-y) var(--container-x); }
 .cta-btn:hover::after { opacity: 1; }
 .cta-btn:active { transform: translateY(1px); }
 
-
 /* ========================================
    6) ヘッドライン・クロージング
    ======================================== */
@@ -147,19 +145,17 @@ section.gradation--black .section-title {
   font-size: clamp(2.2rem, 4vw, 2.8rem);
   margin-bottom: 3rem;
 }
-
 section.gradation--black .section-body {
   max-width: var(--closing-body-width);
   letter-spacing: var(--closing-body-tracking);
   line-height: 1.55;
-
-  margin-left: auto;   /* ★ 左右中央に配置 */
-  margin-right: auto;  /* ★ 左右中央に配置 */
-  text-align: left;    /* ★ 文字は左揃えのまま */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 /* ========================================
-   7) モーダル（統一版）
+   7) モーダル
    ======================================== */
 .modal {
   position: fixed; inset: 0; display: none;
@@ -168,7 +164,6 @@ section.gradation--black .section-body {
   padding: 1rem; z-index: 9999;
 }
 .modal[aria-hidden="false"] { display: flex; }
-
 .modal__panel {
   width: min(700px, 90vw); max-height: 90vh;
   background: #fff; border-radius: 16px;
@@ -183,11 +178,10 @@ section.gradation--black .section-body {
   color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 10px 10px 0 0;
-  margin: 0 0 0.3rem 0; /* 下余白を圧縮 */
+  margin: 0 0 0.3rem 0;
   position: sticky; top: 0; z-index: 1;
   display: flex; justify-content: space-between; align-items: center;
 }
-
 .modal__body {
   flex: 1;
   font-size: var(--fs-body);
@@ -195,10 +189,9 @@ section.gradation--black .section-body {
   max-width: var(--body-max);
   overflow-y: auto;
   padding-right: 0.5rem;
-  margin-top: 0.5rem; /* 上余白を圧縮 */
+  margin-top: 0.5rem;
 }
 .modal__body p { margin: 0 0 0.9rem 0; }
-
 .modal__footer {
   margin-top: 1rem;
   position: sticky;
@@ -206,17 +199,14 @@ section.gradation--black .section-body {
   background: #fff;
   padding: 0.5rem 1rem;
   z-index: 1;
-
-  display: flex;               /* 横並び */
-  justify-content: flex-end;   /* デフォは右寄せ */
-  align-items: center;         /* 縦位置を中央揃え */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-
 .modal__footer .cta-btn {
   max-width: 250px;
-  margin: 0;                   /* 中央寄せ解除 → 左寄せ */
+  margin-right: auto;
 }
-
 .modal__close {
   appearance: none;
   border: 0;
@@ -226,21 +216,14 @@ section.gradation--black .section-body {
   cursor: pointer;
   margin-left: auto;
 }
-.modal__close:hover {
-  color: #ff4081;
-}
-
-.modal__image {
-  text-align: center;
-  margin: 1.2rem 0;
-}
+.modal__close:hover { color: #ff4081; }
+.modal__image { text-align: center; margin: 1.2rem 0; }
 .modal__image img {
-  max-width: 70%;        /* ← 少し大きめに変更 */
+  max-width: 70%;
   border-radius: 8px;
   margin: 0 auto 1rem;
   display: block;
 }
-
 
 /* ========================================
    8) 補足要素
@@ -249,10 +232,8 @@ section.gradation--black .section-body {
 @media (max-width: 480px) {
   .logo { width: 120px; top: 1rem; left: 1rem; }
 }
-
 .fade-up { opacity: 0; transform: translateY(50px); transition: all 1.3s ease-out; }
 .fade-up.show { opacity: 1; transform: translateY(0); }
-
 .step-image img { width: 100%; max-width: 320px; }
 .step-row { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: nowrap; margin-bottom: 2rem; }
 .step-text { flex: 1 1 60%; }
@@ -261,7 +242,6 @@ section.gradation--black .section-body {
   .step-row { flex-direction: column; align-items: center; gap: 2rem; }
   .step-image { display: none; }
 }
-
 section.has-divider { position: relative; }
 section.has-divider::after {
   content: "";
@@ -273,29 +253,16 @@ section.has-divider::after {
   z-index: 2;
 }
 
-
 /* ========================================
    9) モーダル内カスタム
    ======================================== */
-
-/* フッター内のCTAボタン（青～紫のグラデーション） */
 .modal__footer .cta-btn {
   background: linear-gradient(135deg, #3a0ca3, #4361ee);
 }
 .modal__footer .cta-btn::after {
   background: linear-gradient(135deg, #7b2cbf, #ff4081);
 }
-
-/* 共通ボックス（昇給・転職・独立用） */
-.box {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem 1.2rem;
-  margin-bottom: 1rem;
-  background: #fff;
-}
-
-/* ボックス内の見出し（昇給・転職・独立） */
+.box { border: 1px solid #ccc; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1rem; background: #fff; }
 .box h3 {
   margin: 0.5rem 0 0.8rem;
   font-size: 1.3rem;
@@ -305,10 +272,8 @@ section.has-divider::after {
   padding: 0.6rem 1rem;
   border-radius: 6px;
 }
-
-/* 特別ボックス（あなたの道は〜用） */
 .center-box {
-  text-align: center;   /* PCでは中央寄せ */
+  text-align: center;
   line-height: 1.4;
   background: linear-gradient(135deg, #3a0ca3, #4361ee);
   border: none;
@@ -317,7 +282,6 @@ section.has-divider::after {
   padding: 1.5rem 1.8rem;
   margin-bottom: 1.5rem;
 }
-
 .center-box h3 {
   background: none;
   color: #fff;
@@ -325,21 +289,10 @@ section.has-divider::after {
   font-weight: 700;
   margin: 0.3rem 0 0.6rem;
 }
-
-/* スマホ（480px以下）では左寄せに変更 */
 @media (max-width: 480px) {
-  .center-box {
-    text-align: left;
-  }
+  .center-box { text-align: left; }
 }
-
-
-/* YouTube動画（OZMAN用など） */
-.modal__video {
-  width: 100%;
-  max-width: 420px;  /* PCでは控えめサイズ */
-  margin: 0 auto;
-}
+.modal__video { width: 100%; max-width: 420px; margin: 0 auto; }
 .modal__video iframe {
   width: 100%;
   aspect-ratio: 16/9;
@@ -347,32 +300,9 @@ section.has-divider::after {
   display: block;
   border-radius: 6px;
 }
-
-/* スマホ用にさらに縮小 */
 @media (max-width: 480px) {
-  .modal__video {
-    max-width: 280px;  /* スマホではさらに小さめ */
-  }
+  .modal__video { max-width: 280px; }
 }
-
-.modal__footer {
-  margin-top: 1rem;
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding: 0.5rem 1rem;
-  z-index: 1;
-
-  display: flex;
-  justify-content: flex-end;  /* デフォは右寄せ */
-  align-items: center;
-}
-
-.modal__footer .cta-btn {
-  max-width: 250px;
-  margin-right: auto;   /* ボタンがあるときは左寄せ */
-}
-
 .modal__footer .fqa-banner {
   max-width: 80px;
   height: auto;
@@ -380,19 +310,21 @@ section.has-divider::after {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-.modal__footer .fqa-banner:hover {
-  transform: scale(1.05);
+.modal__footer .fqa-banner:hover { transform: scale(1.05); }
+.closing-section { position: relative; }
+.closing-fqa-inline { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.closing-fqa-inline img {
+  max-width: 80px;
+  height: auto;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
 }
-
-
-
+.closing-fqa-inline img:hover { transform: scale(1.05); }
 </style>
-
-
-
 </head>
 
 <body>
+
 
 <!-- =========================
      Headline（黒グラデ ／ 全幅）
@@ -583,6 +515,7 @@ section.has-divider::after {
 <!-- =========================
      Closing（黒グラデ）
      ========================= -->
+<!-- Closing セクション -->
 <section class="gradation--black on-dark closing-section">
   <div class="container">
     <h2 class="section-title fade-up">AI時代に、リツアンはどう変わるか</h2>
@@ -595,8 +528,17 @@ section.has-divider::after {
       <p>ここで言うソリューションとは、課題発見から設計・開発・実装・運用までを一貫して担うことです。</p>
       <p>時代はすでに動き出しています。その潮流に自ら乗り込み、次の時代の価値を創り出すために、リツアンは本気で動きます。</p>
     </div>
+
+      <!-- 本文の最後に右寄せで配置 -->
+      <div class="closing-fqa-inline">
+        <a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+          <img src="modal_fqa2.png" alt="よくある質問">
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
 
 
 <!-- =========================
@@ -891,7 +833,7 @@ section.has-divider::after {
       </div>
 
       <div class="box">
-        <h3>① 昇給 ― 新会社で元請け単価で働く</h3>
+        <h3>① 昇給</h3>
         <p>ロードマップを修了したあなたは、もはや「AIを学んだ人」ではなく「AIで成果を出せる人」です。</p>
         <p>次の舞台は、リツアンが新たに立ち上げるAI開発専門の新会社。ここはエンドユーザーと直接契約を結ぶ元請けポジションであり、SESのように上位企業が中間マージンを取る構造から解放されます。</p>
         <p>その結果、同じ労働でも報酬が高水準＝昇給が期待できる環境です。新会社への移籍は、AI活用や実装で実績を示した人材に限られ、努力と成果がそのまま市場価値として反映されます。</p>
@@ -901,7 +843,7 @@ section.has-divider::after {
       </div>
 
       <div class="box">
-        <h3>② 転職 ― キャリアブリッジとしての挑戦</h3>
+        <h3>② 転職</h3>
         <p>ロードマップを修了した人材は、AI、データ解析、IoT、クラウドといった幅広いDXスキルを身につけています。</p>
         <p>次のキャリアとして、大手メーカーやグローバル企業での活躍が視野に入ります。リツアンは、これまで培ってきた数百社のネットワークを活かし、そうした企業との接点を提供します。</p>
         <p>👉 <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">主要取引先一覧はこちら</a></p>
@@ -911,7 +853,7 @@ section.has-divider::after {
       </div>
 
       <div class="box">
-        <h3>③ 独立 ― 小さなCEO制度で経営者へ</h3>
+        <h3>③ 独立 </h3>
         <p>「もっと自由に働きたい」「自分の事業を育てたい」――。そんな思いを持つ人のために、リツアンは二つの道を用意しています。</p>
         <p>ひとつは、個人事業主としてフリーランスで活動できる紹介サービス。これは柔軟に働きたい人にとって、シンプルで実践的な選択肢です。</p>
         <p>しかしフリーランスには限界があります。チームを持たないために自分の能力以上の成果を出しづらいこと。また、体調や契約に左右されやすく、事業継続性に不安が残ることです。</p>
@@ -924,13 +866,7 @@ section.has-divider::after {
         <p>リツアンは、その挑戦を経営と成長の両面から後押しします。</p>
       </div>
 
-      <div class="box center-box">
-        <h3>あなたの道は、あなたが決める</h3>
-        <p>昇給、転職、独立。どの道も正解です。</p>
-        <p>リツアンは、あなたの挑戦をいつでも支え続けます。</p>
-      </div>
-
-    </div>
+   </div>
 
     <!-- フッター -->
     <div class="modal__footer">
@@ -949,14 +885,19 @@ section.has-divider::after {
 
 <script>
 /* ===============
-   Modal Controller
+   Modal Controller（アクセシビリティ改善版）
    ================ */
+let lastFocusedElement = null;
 function openModal(id){
   const el = document.getElementById(id);
   if(!el) return;
+  lastFocusedElement = document.activeElement;
   el.setAttribute('aria-hidden','false');
   document.addEventListener('keydown', escClose);
   el.addEventListener('click', backdropClose);
+  const focusable = getFocusableElements(el);
+  if(focusable.length) focusable[0].focus();
+  trapFocus(el);
 }
 function closeModal(id){
   const el = document.getElementById(id);
@@ -964,6 +905,7 @@ function closeModal(id){
   el.setAttribute('aria-hidden','true');
   document.removeEventListener('keydown', escClose);
   el.removeEventListener('click', backdropClose);
+  if(lastFocusedElement) lastFocusedElement.focus();
 }
 function escClose(e){
   if(e.key === 'Escape'){
@@ -971,15 +913,40 @@ function escClose(e){
       m.setAttribute('aria-hidden','true');
     });
     document.removeEventListener('keydown', escClose);
+    if(lastFocusedElement) lastFocusedElement.focus();
   }
 }
 function backdropClose(e){
   if(e.target.classList.contains('modal')){
     e.currentTarget.setAttribute('aria-hidden','true');
     document.removeEventListener('keydown', escClose);
+    if(lastFocusedElement) lastFocusedElement.focus();
   }
 }
+function getFocusableElements(container){
+  return container.querySelectorAll(
+    'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+  );
+}
+function trapFocus(modal){
+  const focusable = getFocusableElements(modal);
+  if(!focusable.length) return;
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+  modal.addEventListener('keydown', e=>{
+    if(e.key === 'Tab'){
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
 </script>
+
 <script>
 /* ===============
    Scroll Animation（一度表示されたら保持）
@@ -988,18 +955,12 @@ const targets = document.querySelectorAll('.fade-up');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('show');  // 表示
-      observer.unobserve(entry.target);    // 監視解除 → 上に戻っても消えない
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
     }
   });
 });
-
-// 全要素を監視開始
 targets.forEach(el => observer.observe(el));
 </script>
-
 </body>
-
 </html>
-
-
