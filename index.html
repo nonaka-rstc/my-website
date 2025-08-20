@@ -1,1005 +1,491 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI時代を生き抜くロードマップ｜リツアンSTC</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ｜AI時代を生き抜くロードマップ</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 2rem 6rem;
+      background: #fdfdfd;
+      color: #333;
+    }
 
-<style>
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
 
-/* ========================================
-   0) カスタム変数（CSS変数）
-   ======================================== */
-:root {
-  --grad-black: linear-gradient(135deg, #535353, #000000);
-  --grad-gray: linear-gradient(135deg, #fdfbfb, #ebedee);
-  --grad-bluepurple: linear-gradient(135deg, #3a0ca3, #4361ee);
+      .logo-container img {
+        width: 120px;
+      }
+    }
 
-  --fallback-black: #0f0f10;
-  --fallback-gray: #f1f3f5;
-  --fallback-bluepurple: #3a0ca3;
+    .logo-container {
+      margin-bottom: 1rem;
+    }
 
-  --section-y: clamp(4rem, 8vw, 7rem);
-  --container-x: clamp(1rem, 4vw, 2rem);
-  --container-w: 1024px;
-  --body-max: 72ch;
+    h1 {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #333333; /* ← ページタイトルも濃いグレーに変更 */
+    }
 
-  --fs-headline: clamp(2.2rem, 5vw, 3.2rem);
-  --fs-title: clamp(1.9rem, 3.2vw, 2.4rem);
-  --fs-subtitle: clamp(1.2rem, 2vw, 1.5rem);
-  --fs-body: clamp(1.05rem, 1.7vw, 1.22rem);
+    h2 {
+      margin-top: 4rem;
+      margin-bottom: 1rem;
+      color: #333333; /* ← Step見出し文字を濃いグレーに */
+      border-left: 6px solid #333333; /* ← ラインも濃いグレーに統一 */
+      padding-left: 0.5rem;
+    }
 
-  --lh-1: 1.25;
-  --lh-2: 1.5;
-  --lh-3: 1.75;
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 0.5rem;
+    }
 
-  --cta-pad-y: 0.55rem;
-  --cta-pad-x: 1.2rem;
-  --cta-radius: 8px;
-  --cta-minw: 200px;
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      background: #f5f5f5;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      color: #1877f2; /* ← 質問文をブルーに変更 */
+    }
 
-  --gap-title-body-pc: 3rem;
-  --gap-title-body-sp: 1.8rem;
-  --closing-body-width: 60ch;
-  --closing-body-tracking: -0.02em;
-  --closing-body-leading: 1.7;
-}
+    .faq-question::after {
+      content: "＋";
+      position: absolute;
+      right: 1rem;
+      font-size: 1.2rem;
+    }
 
+    .faq-item.open .faq-question::after {
+      content: "−";
+    }
 
-/* ========================================
-   1) ベース設定
-   ======================================== */
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  color: #333;
-  line-height: var(--lh-3);
-  -webkit-font-smoothing: antialiased;
-}
-img { max-width: 100%; height: auto; display: block; }
+    .faq-answer {
+      display: none;
+      padding: 0.8rem 1.2rem;
+      background: #fff;
+      border-left: 3px solid #3a0ca3;
+    }
 
-
-/* ========================================
-   2) 背景グラデーション
-   ======================================== */
-.gradation--black { background: var(--grad-black); }
-.gradation--gray { background: var(--grad-gray); }
-.gradation--bluepurple { background: var(--grad-bluepurple); }
-.on-dark { color: #fff !important; }
-
-
-/* ========================================
-   3) レイアウト
-   ======================================== */
-section { width: 100%; padding: var(--section-y) var(--container-x); }
-.container { max-width: var(--container-w); margin-inline: auto; }
-
-
-/* ========================================
-   4) タイポグラフィ
-   ======================================== */
-.headline-title {
-  font-size: var(--fs-headline);
-  line-height: var(--lh-1);
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-}
-.section-title {
-  font-size: var(--fs-title);
-  line-height: var(--lh-1);
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-}
-.section-subtitle {
-  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
-  font-weight: 600;
-  color: #444;
-  margin: 0 0 1rem 0;
-}
-.section-body {
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  max-width: var(--body-max);
-  margin: 0 0 2rem 0;
-}
-.section-body p { margin: 0 0 0.9rem 0; }
-.section-body p:last-child { margin-bottom: 0; }
-
-
-/* ========================================
-   5) CTAボタン
-   ======================================== */
-.cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-.cta-btn {
-  position: relative; display: inline-block; text-align: center;
-  padding: var(--cta-pad-y) var(--cta-pad-x);
-  min-width: var(--cta-minw);
-  border-radius: var(--cta-radius);
-  font-weight: 600; font-size: 0.95rem;
-  text-decoration: none; color: #fff;
-  background: var(--grad-black);
-  overflow: hidden; z-index: 0;
-}
-.cta-btn::after {
-  content: ""; position: absolute; inset: 0;
-  background: var(--grad-bluepurple); opacity: 0;
-  transition: opacity 0.6s ease; z-index: -1;
-}
-.cta-btn:hover::after { opacity: 1; }
-.cta-btn:active { transform: translateY(1px); }
-
-
-/* ========================================
-   6) ヘッドライン・クロージング
-   ======================================== */
-.headline-section { text-align: center; padding-top: clamp(8rem, 13vw, 11rem); padding-bottom: clamp(6rem, 11vw, 9rem); }
-.headline-section .headline-title { margin-bottom: 5.5rem; }
-.headline-section .section-body { margin-inline: auto; }
-section.gradation--black .section-body {
-  max-width: var(--closing-body-width);
-  letter-spacing: var(--closing-body-tracking);
-  line-height: 1.55;
-}
-section.gradation--black .section-title,
-section.gradation--black .section-subtitle { text-align: center; }
-section.gradation--black .section-title {
-  font-size: clamp(2.2rem, 4vw, 2.8rem);
-  margin-bottom: 3rem;
-}
-
-section.gradation--black .section-body {
-  max-width: var(--closing-body-width);
-  letter-spacing: var(--closing-body-tracking);
-  line-height: 1.55;
-
-  margin-left: auto;   /* ★ 左右中央に配置 */
-  margin-right: auto;  /* ★ 左右中央に配置 */
-  text-align: left;    /* ★ 文字は左揃えのまま */
-}
-
-/* ========================================
-   7) モーダル（統一版）
-   ======================================== */
-.modal {
-  position: fixed; inset: 0; display: none;
-  background: rgba(0, 0, 0, 0.5);
-  align-items: center; justify-content: center;
-  padding: 1rem; z-index: 9999;
-}
-.modal[aria-hidden="false"] { display: flex; }
-
-.modal__panel {
-  width: min(700px, 90vw); max-height: 90vh;
-  background: #fff; border-radius: 16px;
-  padding: 1rem clamp(1.25rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2rem);
-  display: flex; flex-direction: column;
-  overflow: hidden;
-}
-.modal__title {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800;
-  background: var(--grad-black);
-  color: #fff;
-  padding: 0.8rem 1rem;
-  border-radius: 10px 10px 0 0;
-  margin: 0 0 0.3rem 0; /* 下余白を圧縮 */
-  position: sticky; top: 0; z-index: 1;
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.modal__body {
-  flex: 1;
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  max-width: var(--body-max);
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  margin-top: 0.5rem; /* 上余白を圧縮 */
-}
-.modal__body p { margin: 0 0 0.9rem 0; }
-
-.modal__footer {
-  margin-top: 1rem;
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding: 0.5rem 1rem;
-  z-index: 1;
-
-  display: flex;               /* 横並び */
-  justify-content: flex-end;   /* デフォは右寄せ */
-  align-items: center;         /* 縦位置を中央揃え */
-}
-
-.modal__footer .cta-btn {
-  max-width: 250px;
-  margin: 0;                   /* 中央寄せ解除 → 左寄せ */
-}
-
-.modal__close {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-  margin-left: auto;
-}
-.modal__close:hover {
-  color: #ff4081;
-}
-
-.modal__image {
-  text-align: center;
-  margin: 1.2rem 0;
-}
-.modal__image img {
-  max-width: 70%;        /* ← 少し大きめに変更 */
-  border-radius: 8px;
-  margin: 0 auto 1rem;
-  display: block;
-}
-
-
-/* ========================================
-   8) 補足要素
-   ======================================== */
-.logo { position: absolute; top: 1.5rem; left: 1.5rem; width: 140px; max-width: 20vw; z-index: 10; }
-@media (max-width: 480px) {
-  .logo { width: 120px; top: 1rem; left: 1rem; }
-}
-
-.fade-up { opacity: 0; transform: translateY(50px); transition: all 1.3s ease-out; }
-.fade-up.show { opacity: 1; transform: translateY(0); }
-
-.step-image img { width: 100%; max-width: 320px; }
-.step-row { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: nowrap; margin-bottom: 2rem; }
-.step-text { flex: 1 1 60%; }
-.step-image { flex: 1 1 40%; text-align: right; margin-top: 3rem; }
-@media (max-width: 768px) {
-  .step-row { flex-direction: column; align-items: center; gap: 2rem; }
-  .step-image { display: none; }
-}
-
-section.has-divider { position: relative; }
-section.has-divider::after {
-  content: "";
-  position: absolute; left: 50%; bottom: 0;
-  transform: translateX(-50%) translateY(50%);
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 30px solid #bbb;
-  z-index: 2;
-}
-
-
-/* ========================================
-   9) モーダル内カスタム
-   ======================================== */
-
-/* フッター内のCTAボタン（青～紫のグラデーション） */
-.modal__footer .cta-btn {
-  background: linear-gradient(135deg, #3a0ca3, #4361ee);
-}
-.modal__footer .cta-btn::after {
-  background: linear-gradient(135deg, #7b2cbf, #ff4081);
-}
-
-/* 共通ボックス（昇給・転職・独立用） */
-.box {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem 1.2rem;
-  margin-bottom: 1rem;
-  background: #fff;
-}
-
-/* ボックス内の見出し（昇給・転職・独立） */
-.box h3 {
-  margin: 0.5rem 0 0.8rem;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #3a0ca3, #4361ee);
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-}
-
-/* 特別ボックス（あなたの道は〜用） */
-.center-box {
-  text-align: center;   /* PCでは中央寄せ */
-  line-height: 1.4;
-  background: linear-gradient(135deg, #3a0ca3, #4361ee);
-  border: none;
-  color: #fff;
-  border-radius: 8px;
-  padding: 1.5rem 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.center-box h3 {
-  background: none;
-  color: #fff;
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin: 0.3rem 0 0.6rem;
-}
-
-/* スマホ（480px以下）では左寄せに変更 */
-@media (max-width: 480px) {
-  .center-box {
-    text-align: left;
-  }
-}
-
-
-/* YouTube動画（OZMAN用など） */
-.modal__video {
-  width: 100%;
-  max-width: 420px;  /* PCでは控えめサイズ */
-  margin: 0 auto;
-}
-.modal__video iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-}
-
-/* スマホ用にさらに縮小 */
-@media (max-width: 480px) {
-  .modal__video {
-    max-width: 280px;  /* スマホではさらに小さめ */
-  }
-}
-
-.modal__footer {
-  margin-top: 1rem;
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding: 0.5rem 1rem;
-  z-index: 1;
-
-  display: flex;
-  justify-content: flex-end;  /* デフォは右寄せ */
-  align-items: center;
-}
-
-.modal__footer .cta-btn {
-  max-width: 250px;
-  margin-right: auto;   /* ボタンがあるときは左寄せ */
-}
-
-.modal__footer .fqa-banner {
-  max-width: 80px;
-  height: auto;
-  margin: 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.modal__footer .fqa-banner:hover {
-  transform: scale(1.05);
-}
-
-
-
-</style>
-
-
-
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- =========================
-     Headline（黒グラデ ／ 全幅）
-     ========================= -->
-<section class="gradation--black on-dark headline-section" style="position: relative;">
-  <div class="container">
-    <a href="https://ritsuan.com/" target="_blank" rel="noopener">
-      <img src="ritsuan_logo_white_v2.png" alt="リツアンSTC ロゴ" class="logo">
-    </a>
-    <!-- Title もフェイドアップ -->
-<h1 class="headline-title fade-up">AI時代を生き抜くロードマップ</h1>
-<div class="section-body fade-up">
-  <p>AIや自動化の波は、単純な開発や作業を容赦なく飲み込んでいきます。</p>
-  <p>昨日まで通用したスキルが、明日には不要になるかもしれない。</p>
-  <p>だからこそ、これから評価されるのは、AIを武器に価値を生み出せる人。</p>
-  <p>リツアンは、AI未経験からでも成長できる6つのステップを用意しました。</p>
-  <p><strong>知る。磨く。試す。作る。広げる。そして、ゴールへ。</strong></p>
-  <p>一歩ずつ、一緒に学びながら、未来へ歩んでいきましょう。</p>
-</div>
-
+  <div class="logo-container">
+    <img src="ritsuan_logo_black_v1.png" alt="ritsuan logo" style="width: 150px;">
   </div>
-</section>
 
-<!-- =========================
-     S1（白） Step01｜知る
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step01.png" alt="AIテック イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step01｜知る</h2>
-        <div class="section-subtitle fade-up">AIテック</div>
-        <p><strong>「AIって何？ どこで使われている？」</strong></p>
-        <p>そんな素朴な疑問を解くところから始まります。</p>
-        <p>ここを押さえるだけで、学びのスピードは一気に上がります。</p>
-        <p>AIテックでは、一流講師と実践形式で学び、活用事例からLLM開発まで習得。</p>
-        <p>自然言語処理・画像認識・音声処理など幅広く触れ、次のステップに進む土台を作ります。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s1');return false;">AIテックって何？</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
+  <h1>FAQ｜AI時代を生き抜くロードマップ</h1>
 
-
-
-
-<!-- =========================
-     S2（灰グラデ） Step02｜磨く
-     ========================= -->
-<section class="gradation--gray has-divider">
-  <div class="container">
-    <div class="step-row">
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step02｜磨く</h2>
-        <div class="section-subtitle fade-up">G検定・E資格</div>
-        <p><strong>「知っている」を「理解している」に変える。</strong></p>
-        <p>基礎を固めたら、次は自信を持って語れるレベルまで引き上げます。</p>
-        <p>G検定やE資格に挑戦し、学びを形にして証明。</p>
-        <p>資格は自分の成長を客観的に示すだけでなく、次の実戦に踏み出す強い後押しになります。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s2');return false;">G検定・E資格を詳しく知る</a>
-        </div>
-      </div>
-      <div class="step-image fade-up">
-        <img src="step02.png" alt="Step02 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S3（白） Step03｜試す
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step03.png" alt="Step03 イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step03｜試す</h2>
-        <div class="section-subtitle fade-up">社外コンペに挑戦！</div>
-        <p><strong>現場で通用する力は、机上では身につかない。</strong></p>
-        <p>Step02で培った基礎を武器に、Kaggleのような世界的コンペに挑みます。</p>
-        <p>公開データでAIモデルを作り、精度や発想力を競う。</p>
-        <p>試行錯誤を重ねる経験が、勝てる技術を確かなものにします。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s3');return false;">Kaggleを詳しく知る</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S4（灰グラデ） Step04｜作る
-     ========================= -->
-<section class="gradation--gray has-divider">
-  <div class="container">
-    <div class="step-row">
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step04｜作る</h2>
-        <div class="section-subtitle fade-up">社内コンペに挑戦！</div>
-        <p><strong>「あなたのモデルが、実際のビジネスで動き出すかもしれない。」</strong></p>
-        <p>賞金総額2000万円の社内コンペで、OZMANの実データを使って現場課題に挑みます。</p>
-        <p>画像認識、売上予測、環境モニタリングなど多彩なテーマ。</p>
-        <p>結果次第で、あなたの開発したAIがリアルビジネスに導入されます。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s4-1');return false;">2000万円を懸けたAIコンペとは？</a>
-          <a href="#" class="cta-btn" onclick="openModal('m-s4-2');return false;">OZMANを詳しく知る</a>
-        </div>
-      </div>
-      <div class="step-image fade-up">
-        <img src="step04.png" alt="Step04 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-
-<!-- =========================
-     S5（白） Step05｜広げる
-     ========================= -->
-<section class="has-divider">
-  <div class="container">
-    <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step05.png" alt="Step05 イメージ">
-      </div>
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step05｜広げる</h2>
-        <div class="section-subtitle fade-up">リアルな現場に挑戦！</div>
-        <p><strong>この経験は、履歴書に書ける武器になる。</strong></p>
-        <p>社内コンペで結果を残したら、地方の企業や自治体と協働します。</p>
-        <p>業種も課題も異なる現場で、PoCにとどまらず本稼働AIを作り切る。</p>
-        <p>転職や独立でも強いアピールになる実績を手にし、スキルの幅を一気に広げます。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s5');return false;">リビングラボを詳しく知る</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="step-divider"></div>
-
-
-<!-- =========================
-     S6（灰グラデ） Step06｜ゴール
-     ========================= -->
-<section class="gradation--gray">
-  <div class="container">
-    <div class="step-row">
-      <!-- 左：テキスト -->
-      <div class="step-text section-body fade-up">
-        <h2 class="section-title fade-up">Step06｜それぞれのゴール</h2>
-        <div class="section-subtitle fade-up">飛び立つ未来</div>
-        <p><strong>ここからは、あなたが選ぶ番です。</strong></p>
-        <p>6つのステップを駆け抜けたあなたは、AI時代を戦える力を手にしました。</p>
-        <p>年収や待遇を上げる。新しい舞台に挑戦する。理想を形にして独立する。</p>
-        <p>どの道を選んでも、それはあなたが掴み取った正解です。</p>
-        <div class="cta-row">
-          <a href="#" class="cta-btn" onclick="openModal('m-s6');return false;">昇給、転職、独立</a>
-        </div>
-      </div>
-      <!-- 右：画像 -->
-      <div class="step-image fade-up">
-        <img src="step06.png" alt="Step06 イメージ">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================
-     Closing（黒グラデ）
-     ========================= -->
-<section class="gradation--black on-dark closing-section">
-  <div class="container">
-    <h2 class="section-title fade-up">AI時代に、リツアンはどう変わるか</h2>
-    <div class="section-body fade-up">
-      <p>いま、働き方のルールが大きく変わろうとしています。AIの進化により、設計やコーディングといった「人が時間をかけていた仕事」は瞬時に処理できるようになりました。</p>
-      <p>その結果、従来の人月単価モデルは通用しなくなります。これから評価されるのは、「何時間働いたか」ではなく「どんな成果を出せたか」です。</p>
-      <p>この変化は、多重下請け構造にも直撃します。元請けがAIで効率化すれば、中間レイヤーの仕事は急速に縮小し、SES型の下請けモデルは生き残りが難しくなります。</p>
-      <p>だからリツアンは、「人を貸す会社」から前進します。目指すのは、企業の課題をAIで解決する技術提供会社。</p>
-      <p>そのために、AI開発とソリューション提供に特化した新会社を立ち上げます。</p>
-      <p>ここで言うソリューションとは、課題発見から設計・開発・実装・運用までを一貫して担うことです。</p>
-      <p>時代はすでに動き出しています。その潮流に自ら乗り込み、次の時代の価値を創り出すために、リツアンは本気で動きます。</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================
-     Modals
-     ========================= -->
 
 <!-- Step01 -->
-<div class="modal" id="m-s1" aria-hidden="true" role="dialog" aria-modal="true" aria-label="AIテックって何？">
-  <div class="modal__panel">
-    <div class="modal__title">
-      AIテックって何？
-      <button class="modal__close" onclick="closeModal('m-s1')" aria-label="閉じる">×</button>
-    </div>
+<h2 id="step01">Step01｜知る（AIテック）</h2>
 
-    <div class="modal__body">
+<div class="faq-item">
+  <button class="faq-question">Q1. AI初心者でも参加できますか？</button>
+  <div class="faq-answer">
+    <p>はい、大丈夫です。AIテックは「AIって何？」という基本の疑問から始まり、専門知識がなくても安心して受講できる内容です。プログラミング経験も不要です。</p>
+  </div>
+</div>
 
-      <div class="modal__image">
-        <img src="step01_modal.png" alt="AIテックの紹介画像">
-      </div>
+<div class="faq-item">
+  <button class="faq-question">Q2. 講座は無料ですか？</button>
+  <div class="faq-answer">
+    <p>はい、すべて無料で受講できます。リツアン社員だけでなく、外部の方もメール登録だけで受講可能です。料金は一切かかりません。</p>
+  </div>
+</div>
 
-      <p>AIテックは、「AIって何？ どこで使われているの？」という疑問から学び始められる、リツアン独自のリスキリング講座です。3つの専門プログラムを通じて、AI時代に必要なスキルを安心して、そして未来を見据えて身につけられるように設計されています。</p>
-      <p>最初の入り口は、「AIエージェント実践ウェビナー」（1回）。ここでは「AIが人の代わりに仕事を進める」とはどういうことかを体験できます。日常のタスクを自動でこなすデモを目にすると、AIが社会や働き方をどう変えていくのかを具体的に理解できます。──ここは“AIの可能性を実感するステージ”。</p>
+<div class="faq-item">
+  <button class="faq-question">Q3. どんな内容が学べるのですか？</button>
+  <div class="faq-answer">
+    <p>ChatGPTのようなAIの仕組みや、検索拡張生成（RAG）のような実践的な技術まで、段階的に学べます。AIを「使える」だけでなく「作れる」力を育てる講座です。</p>
+  </div>
+</div>
 
-      <div class="modal__image">
-        <img src="Step01_modal2.png" alt="RAG実装に使用するツールのスライド画像">
-      </div>
+<div class="faq-item">
+  <button class="faq-question">Q4. 学習の順番は決まっていますか？</button>
+  <div class="faq-answer">
+    <p>決まってはいませんが、次の順で受講すると理解が深まります：</p>
+    <ol>
+      <li>AIエージェント実践ウェビナー（全1回）</li>
+      <li>LLMサービス開発講座（基礎編＋実践編、全4回）</li>
+      <li>AI開発講座（画像認識・音声処理など／今後開催予定）</li>
+    </ol>
+  </div>
+</div>
 
-      <p>次に、「LLMサービス開発講座」（全4回）。基礎編1回と実践編3回で構成され、大規模言語モデル（LLM）の理解から応用までを体系的に学びます。プロンプト設計やRAG、開発ツールの活用を通じて「自分のアイデアをAIで形にする力」が養われます。──ここは“社会実装に挑戦するステージ”。</p>
-      <p>そして今後は、「AI開発講座」（全4回）。画像認識や音声処理など幅広いテーマを扱い、AIモデルを自分の手で構築し動かす実践力を磨きます。基礎編は2025年10月下旬に開催予定で、その後の実践編では成果を出せるモデル開発に挑戦します。──ここは“幅広い応用力を鍛えるステージ”。</p>
+<div class="faq-item">
+  <button class="faq-question">Q5. リアルタイムで参加しないとダメですか？</button>
+  <div class="faq-answer">
+    <p>いいえ。講座はすべてアーカイブ（録画）で視聴可能です。好きな時間に、自分のペースで学習できます。</p>
+  </div>
+</div>
 
-      <div class="modal__image">
-        <img src="Step01_modal3.png" alt="RAGの基本構成と役割分担スライド画像">
-      </div>
+<div class="faq-item">
+  <button class="faq-question">Q6. 講師はどんな方ですか？</button>
+  <div class="faq-answer">
+    <p>東京大学・松尾研究室発のAIスタートアップ出身の講師陣が担当しています。研究と実務の両方を熟知したプロが、初学者にもわかりやすく教えてくれます。</p>
+  </div>
+</div>
 
-      <p>講師は、東京大学・松尾研発スタートアップの第一線メンバー。研究の最前線と実務の両方に精通したプロが、初心者にもわかりやすく、同時に実務家にとっても価値ある講義を届けます。</p>
-      <p>講座はすべてオンライン。すでに開催された回はアーカイブ動画で視聴可能なので、今からでも過去の講座を学ぶことができます。さらに、リツアン社員だけでなく外部の方も、メール登録だけで受講可能です。</p>
-      <p>「AIを知っている」から「AIを使える」へ。AIテックは、誰もが未来へ踏み出せる実践の場です。</p>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q7. 難しくてついていけなくなりそうで不安です…</button>
+  <div class="faq-answer">
+    <p>ご安心ください。難しい数式や専門用語は使わず、図解や実例を多く取り入れた内容です。1回の講座もコンパクトに構成されており、気軽に学べます。</p>
+  </div>
+</div>
 
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://ritsuan.com/ai_tech/" target="_blank" rel="noopener">▶ AIテック公式サイトへ</a>
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
+<div class="faq-item">
+  <button class="faq-question">Q8. 特別なパソコンやソフトは必要ですか？</button>
+  <div class="faq-answer">
+    <p>いいえ、必要ありません。インターネットに接続できるパソコンが1台あればOKです。スマートフォンでも視聴可能です。</p>
+  </div>
+</div>
 
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q9. リツアン社員以外も受けられますか？</button>
+  <div class="faq-answer">
+    <p>はい、誰でも受講できます。リツアン社員に限らず、外部の方もメールアドレスを登録するだけで無料で受講可能です。所属や経験に関係なく、AIに興味がある方ならどなたでも歓迎です。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q10. 学んだ内容はどこで活かせますか？</button>
+  <div class="faq-answer">
+    <p>Step02以降の「G検定」「E資格」や、「Kaggle挑戦」「社内コンペ」などの実践ステージに直結しています。知識を学ぶだけでなく、すぐに行動につなげられる設計になっています。</p>
   </div>
 </div>
 
 
+<!-- ================= ★Step02 ================= -->
+<h2 id="step02">Step02｜磨く（G検定・E資格）</h2>
 
-<!-- Step02 -->
-<div class="modal" id="m-s2" aria-hidden="true" role="dialog" aria-modal="true" aria-label="G検定・E資格を詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      G検定・E資格を詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s2')" aria-label="閉じる">×</button>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q1. G検定とE資格って何ですか？</button>
+  <div class="faq-answer">
+    <p>G検定は、AIの基礎知識や活用事例を学ぶ検定試験です。<br>
+    E資格は、ディープラーニングなどの実装力を問う専門資格です。<br>
+    どちらもAIを扱う力を客観的に証明できる資格として、企業からの信頼が高まります。</p>
+  </div>
+</div>
 
-    <div class="modal__body">
+<div class="faq-item">
+  <button class="faq-question">Q2. AIの資格って取ったほうがいいんですか？</button>
+  <div class="faq-answer">
+    <p>はい、取っておくとキャリアの武器になります。<br>
+    特にG検定は「知っている」から「説明できる」へとステップアップするきっかけになります。<br>
+    E資格は、より高度な実装スキルの証明に役立ちます。</p>
+  </div>
+</div>
 
-      <!-- メインイメージ -->
-      <div class="modal__image">
-        <img src="Step02_modal.png" alt="G検定・E資格のイメージ画像">
-      </div>
+<div class="faq-item">
+  <button class="faq-question">Q3. どちらから受けるのがおすすめですか？</button>
+  <div class="faq-answer">
+    <p>一般的には、G検定 → E資格の順で学ぶのがスムーズです。<br>
+    G検定で全体像を理解したうえで、E資格で技術を深めていく流れが自然です。</p>
+  </div>
+</div>
 
-      <p><strong>AIの学びを次の段階へ進めるのが Step02。</strong>  
-      ここでは、日本ディープラーニング協会（JDLA）が実施する「<strong>G検定</strong>」と「<strong>E資格</strong>」に挑戦します。</p>
+<div class="faq-item">
+  <button class="faq-question">Q4. 受験料はかかりますか？</button>
+  <div class="faq-answer">
+    <p>はい、E資格はJDLA認定講座（通常15〜25万円程度）の受講が必須です。<br>
+    ただしリツアンでは、この認定講座を自社で無料提供できる体制を2026年初夏までに整備予定です。<br>
+    対象はリツアン社員およびキャリアリターン登録者となります。</p>
+  </div>
+</div>
 
-      <p><strong>G検定</strong>は、AIの基礎知識や活用事例を体系的に整理し、理解度を客観的に示せる資格。  
-      「知っている」を「理解している」に変え、自信を持って語れる力につながります。</p>
+<div class="faq-item">
+  <button class="faq-question">Q5. どうやって勉強すればいいですか？</button>
+  <div class="faq-answer">
+    <p>Step01で基礎を身につけたあと、G検定は過去問や参考書を使った独学でも対応可能です。<br>
+    E資格については、社内のメンタリング制度や勉強会の導入を進めています。</p>
+  </div>
+</div>
 
-      <!-- ✨ 強調エリア -->
-      <p class="highlight-box">
-        <strong>E資格</strong>はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価する実務者向けの資格です。  
-        受験には JDLA認定プログラムの修了が必須で、通常は <strong>十数万円規模の受講料</strong> が必要です。  
-        しかしリツアンでは2026年初夏以降、<strong>社員やキャリターン登録者は <span style="color:red">無料</span> で受講できる仕組み</strong>を整備予定です。
-      </p>
+<div class="faq-item">
+  <button class="faq-question">Q6. 難しそうで不安です…</button>
+  <div class="faq-answer">
+    <p>最初は不安でも、G検定は社会人向けに設計されており、文系出身者の合格実績も多くあります。<br>
+    一歩ずつ理解を積み重ねれば、誰でも目指せます。</p>
+  </div>
+</div>
 
-      <p>さらに、資格保有者による <strong>メンタリング制度</strong> や仲間と学び合える仕組みも準備中。  
-      レベルを問わず挑戦しやすい環境を整えています。</p>
+<div class="faq-item">
+  <button class="faq-question">Q7. 資格を取らないとStep03に進めませんか？</button>
+  <div class="faq-answer">
+    <p>いいえ、資格取得は必須ではありません。<br>
+    ただし、Kaggleや社内コンペなどの実践に取り組む際、G検定・E資格で得た知識は大きな武器になります。</p>
+  </div>
+</div>
 
-      <p>Step02は単なる試験合格がゴールではありません。  
-      ここで得た知識を確かな証明に変え、次の <strong>Step03「社外コンペ」</strong> へ挑むための大切な土台となります。</p>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q8. リツアンで資格取得のサポートはありますか？</button>
+  <div class="faq-answer">
+    <p>はい。今後提供予定の講座に加え、社内チャットでの質問対応や学習ナビ、模擬試験サポートなど、段階的に支援体制を整備しています。</p>
+  </div>
+</div>
 
-    <!-- フッター -->
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://www.jdla.org/certificate/" target="_blank" rel="noopener">
-        ▶ JDLA公式サイトへ
-      </a>
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q9. 文系出身でも受けられますか？</button>
+  <div class="faq-answer">
+    <p>はい、問題ありません。G検定は文系・非エンジニアの方にも配慮された設計です。<br>
+    E資格も、しっかり準備すれば文系出身者でも十分に合格を目指せます。</p>
   </div>
 </div>
 
 
+<!-- ================= ★Step03 ================= -->
+<h2 id="step03">Step03｜試す（Kaggle挑戦）</h2>
 
-
-
-
-<!-- Step03 -->
-<div class="modal" id="m-s3" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kaggleを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      Kaggleを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s3')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <!-- メイン画像 -->
-      <div class="modal__image">
-        <img src="Step03_modal.png" alt="Kaggle挑戦のイメージ画像">
-      </div>
-
-      <p><strong>「知識を実力に変えるには、実戦の場で手を動かすしかない」</strong>。  
-      Step03では、社外コンペへの挑戦を通じて腕を磨きます。その代表例が、Googleが運営する世界最大級のデータサイエンスプラットフォーム <strong>Kaggle</strong> です。</p>
-
-      <p>Kaggleには世界中から数十万人規模のエンジニアや研究者が集い、公開データを使ってAIモデルの精度や発想力を競い合います。  
-      ここで得られる経験は、机上の学習だけでは到達できない「実戦力」へと直結します。</p>
-
-      <p>実際のデータにはノイズや欠損値が含まれ、理論通りには進みません。  
-      Kaggleの挑戦では、特徴量エンジニアリングやアルゴリズム選択を繰り返し試しながら、解決策を模索していきます。  
-      この試行錯誤そのものが、プロの現場で求められるスキルを鍛える最高の教材となります。</p>
-
-      <p>さらに Kaggle の魅力は <strong>世界基準でのベンチマーク</strong>。  
-      同じ課題に数万人規模が挑むため、自分のモデルが国際的にどのレベルにあるかを客観的に把握できます。  
-      上位入賞を狙うことだけが目的ではなく、この挑戦のプロセスで得られる「経験の厚み」こそが最大の財産です。</p>
-
-      <p>Step03は、Googleが支える国際舞台で力を試すステージ。  
-      この挑戦で結果を残した者にこそ、次の <strong>Step04「社内コンペ」</strong> への挑戦権が開かれます。</p>
-    </div>
-
-    <!-- フッター -->
-    <div class="modal__footer">
-      <a class="cta-btn" href="https://www.kaggle.com/" target="_blank" rel="noopener">
-        ▶ Kaggle公式サイトへ
-      </a>
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q1. Kaggleって何ですか？</button>
+  <div class="faq-answer">
+    <p>Kaggle（カグル）は、Googleが運営する世界最大級のデータサイエンスコンペプラットフォームです。世界中のエンジニアが集まり、公開データを使ってAIモデルの精度や発想力を競います。</p>
   </div>
 </div>
 
-
-
-<!-- Step04-1 -->
-<div class="modal" id="m-s4-1" aria-hidden="true" role="dialog" aria-modal="true" aria-label="2000万円を懸けたAIコンペとは？">
-  <div class="modal__panel">
-    <div class="modal__title">
-      2000万円を懸けたAIコンペとは？
-      <button class="modal__close" onclick="closeModal('m-s4-1')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <!-- トロフィー画像を残す -->
-      <div class="modal__image">
-        <img src="step04_modal.png" alt="OZMAN AWARDS トロフィー画像">
-      </div>
-
-      <p>いま、AI時代の挑戦を後押しするために、リツアンは<strong>総額2000万円の社内コンペ</strong>を開催します。</p>
-      <p>🥇 金賞1000万円、🥈 銀賞500万円、🥉 銅賞100万円×5本――全国的にもまれな規模です。</p>
-
-      <p>この賞金は<strong>「挑戦するための着火剤（＝トリガー）」</strong>です。<br>
-      最初の動機が「お金が欲しい」でも構いません。<br>
-      データを扱い、モデルを動かし、精度を競うなかで、自然とAI開発の楽しさと奥深さに引き込まれていくでしょう。</p>
-
-      <p>舞台となるのは、リツアンが運営する植物園OZMANの実データ。<br>
-      画像認識、売上予測、環境モニタリングなど、リアルな課題に挑み、その成果が社会実装に直結する可能性を秘めています。</p>
-
-      <p>しかも、このコンペは<strong>毎年開催</strong>されます。<br>
-      今年うまくいかなくても、来年また挑戦できる。<br>
-      報酬と実戦経験を重ねながら、あなた自身を本物のAIエンジニアへと育ててください。</p>
-
-    </div>
-
-    <!-- フッター -->
-    <div class="modal__footer">
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q2. 初心者でも参加できますか？</button>
+  <div class="faq-answer">
+    <p>はい、大丈夫です。最初は順位を気にせず、提出してみること自体が大切です。初心者向けのチュートリアルや入門コンペも用意されています。</p>
   </div>
 </div>
 
-
-
-<!-- Step04-2 -->
-<div class="modal" id="m-s4-2" aria-hidden="true" role="dialog" aria-modal="true" aria-label="OZMANを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      OZMANを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s4-2')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="Step04_modal_ozman.png" alt="OZMANの外観写真">
-      </div>
-
-      <p>OZMANは、静岡県掛川市にあるリツアン運営の植物園兼ショップです。廃工場をリノベーションした空間に、塊根植物（コーデックス）や多肉植物、ビザールプランツなど、世界中から集めた約1,000種類の希少植物を展示・販売しています。初心者から愛好家まで楽しめる、地域でも珍しいスポットです。</p>
-      <p>OZMANは、障がい者が働く駄菓子屋「横さんち」の発想から生まれました。植物の管理や販売を通じて、多様な人が活躍できるソーシャルファーム型の雇用の場でもあり、地域とのつながりを大切にした取り組みが広がっています。</p>
-      <p>さらに、店内にはカフェやドッグラン、アンティークギャラリーも併設され、訪れる人が思い思いの時間を過ごせる空間になっています。バリアフリー設計で、車椅子やベビーカーでも安心して楽しめるのも大きな特徴です。</p>
-      <p>OZMANは、こちらのYouTube動画で紹介されています。</p>
-      <p>おすすめのビカクシダや店内の雰囲気が映し出されており、動画を見るだけで植物の魅力やお店の世界観を感じ取ることができます。</p>
-
-      <!-- ★ 追加したYouTube埋め込み（サイズ調整版） ★ -->
-      <div class="modal__video">
-        <iframe src="https://www.youtube.com/embed/iz0KLTeDEIQ?si=Etl3BXxDQPwOXzi1" 
-          title="YouTube video player" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-      <!-- ★ ここまで追加 ★ -->
-
-    </div>
-
-    <!-- フッター -->
-    <div class="modal__footer">
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q3. 英語が苦手でも大丈夫ですか？</button>
+  <div class="faq-answer">
+    <p>Kaggleの画面は英語ですが、ブラウザ翻訳で十分対応できます。また、リツアンでは日本語での解説やサポートも用意していますので安心です。</p>
   </div>
 </div>
 
-
-
-
-<!-- Step05 -->
-<div class="modal" id="m-s5" aria-hidden="true" role="dialog" aria-modal="true" aria-label="リビングラボを詳しく知る">
-  <div class="modal__panel">
-    <div class="modal__title">
-      リビングラボを詳しく知る
-      <button class="modal__close" onclick="closeModal('m-s5')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <div class="modal__image">
-        <img src="Step05_modal.png" alt="リビングラボのイメージ画像">
-      </div>
-
-      <p>Step05では「リビングラボ」に挑戦します。リビングラボとは、研究室の中ではなく工場やお店、役所といった“生活の現場”を舞台に、新しい技術やサービスを試し、改良していく仕組みです。エンジニアだけでなく、住民・企業・行政も一緒に参加するのが特徴です。</p>
-      <p>リツアンのStep05では、自治体や商工会と協力し、地元の商店や町工場の課題にAIで挑みます。たとえば、商店街でカメラを使い、来店客の年代や性別をざっくり分析して売り場づくりに活かす。観光地で人の流れをデータで見える化し、混雑を予測して案内を工夫する。町工場では機械の動きを記録して、壊れる前に予防できるようにする――こうした“小さな成功”をまず無償で提供し、「AIは実際に役立つ」と実感してもらいます。</p>
-      <p>しかし私たちの狙いはPoC（概念実証）にとどめることではありません。多くのAIプロジェクトは実験で終わってしまいますが、Step05では開発から導入、運用・保守までを一気通貫で実装します。最初は無償で導入を後押しし、その後は有償の本格システムへ発展させることで、持続可能な仕組みを築きます。</p>
-      <p>地方は都市に比べてDXやAIの導入が遅れがちです。だからこそリビングラボを地方から始めます。エンジニアには経験と実績が残り、企業には確かな成果が届き、リツアンには信用とノウハウが積み重なる。――まさに「三方よし」を実現するステージがStep05です。</p>
-    </div>
-
-    <!-- フッター -->
-    <div class="modal__footer">
-<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q4. どんなスキルが必要ですか？</button>
+  <div class="faq-answer">
+    <p>Pythonを使ったデータ処理の基礎、AIモデル構築の基本（Step01〜02で学んだ内容）があれば大丈夫です。大切なのは「試行錯誤する姿勢」です。</p>
   </div>
 </div>
 
-
-
-<!-- Step06 Modal -->
-<div class="modal" id="m-s6" aria-hidden="true" role="dialog" aria-modal="true" aria-label="昇給、転職、独立">
-  <div class="modal__panel">
-    <div class="modal__title">
-      昇給、転職、独立
-      <button class="modal__close" onclick="closeModal('m-s6')" aria-label="閉じる">×</button>
-    </div>
-
-    <div class="modal__body">
-
-      <!-- ★ 画像を先頭に配置 ★ -->
-      <div class="modal__image">
-        <img src="step06_modal2.png" alt="想定を超えるエンジニア人生">
-      </div>
-
-      <div class="box">
-        <h3>① 昇給 ― 新会社で元請け単価で働く</h3>
-        <p>ロードマップを修了したあなたは、もはや「AIを学んだ人」ではなく「AIで成果を出せる人」です。</p>
-        <p>次の舞台は、リツアンが新たに立ち上げるAI開発専門の新会社。ここはエンドユーザーと直接契約を結ぶ元請けポジションであり、SESのように上位企業が中間マージンを取る構造から解放されます。</p>
-        <p>その結果、同じ労働でも報酬が高水準＝昇給が期待できる環境です。新会社への移籍は、AI活用や実装で実績を示した人材に限られ、努力と成果がそのまま市場価値として反映されます。</p>
-        <p>さらに新会社がAI案件を受注した際には、本体であるリツアンから人員を供給する仕組みも整備。</p>
-        <p>これによりロードマップ未修了のエンジニアもAI開発現場に参加でき、実戦経験を経て新会社へ移籍する「別ルート」での成長も可能です。</p>
-        <p>努力が正当に評価され、挑戦が次のキャリアへ直結する仕組みがここにあります。</p>
-      </div>
-
-      <div class="box">
-        <h3>② 転職 ― キャリアブリッジとしての挑戦</h3>
-        <p>ロードマップを修了した人材は、AI、データ解析、IoT、クラウドといった幅広いDXスキルを身につけています。</p>
-        <p>次のキャリアとして、大手メーカーやグローバル企業での活躍が視野に入ります。リツアンは、これまで培ってきた数百社のネットワークを活かし、そうした企業との接点を提供します。</p>
-        <p>👉 <a href="https://ritsuan.com/company/business/" target="_blank" rel="noopener">主要取引先一覧はこちら</a></p>
-        <p>支援内容は、単なる求人紹介にとどまりません。履歴書や職務経歴書にあたるキャリアシートの整備、実際の選考を想定した面接対策まで、実践的にサポートします。</p>
-        <p>さらに「紹介予定派遣」を活用すれば、まずは派遣で現場に入り、相性を確かめたうえで正社員へ進むことも可能です。</p>
-        <p>また、挑戦の結果「自分には合わない」と感じた場合でも安心。リツアンには出戻り制度があり、キャリアのリスクを抑えながら次の一歩を踏み出すことができます。</p>
-      </div>
-
-      <div class="box">
-        <h3>③ 独立 ― 小さなCEO制度で経営者へ</h3>
-        <p>「もっと自由に働きたい」「自分の事業を育てたい」――。そんな思いを持つ人のために、リツアンは二つの道を用意しています。</p>
-        <p>ひとつは、個人事業主としてフリーランスで活動できる紹介サービス。これは柔軟に働きたい人にとって、シンプルで実践的な選択肢です。</p>
-        <p>しかしフリーランスには限界があります。チームを持たないために自分の能力以上の成果を出しづらいこと。また、体調や契約に左右されやすく、事業継続性に不安が残ることです。</p>
-        <p>これを超える仕組みが、リツアンの小さなCEO制度です。</p>
-        <p>この制度では、高単価案件を低マージンで提供。会計・法務などのバックオフィス支援も整っており、経営の土台を安心して築けます。</p>
-        <p>仲間を集めてチーム化すればリーダーとしてマネジメント報酬も得られ、さらに経営ノウハウやスケール戦略も提供されます。</p>
-        <p>つまり、単なるフリーランスの延長ではなく、法人を立ち上げ経営者として挑戦できる環境が整っているのです。</p>
-        <p>👉 <a href="https://ritsuan.com/lp/small_ceo/" target="_blank" rel="noopener">小さなCEO制度を詳しく見る</a></p>
-        <p>リツアンはフリーランスの自由も支援します。しかしAIを学び成果を出す力を手にしたあなたには、小さなCEOとして法人を育て、個人の限界を超えてスケールする挑戦こそふさわしいと考えています。</p>
-        <p>リツアンは、その挑戦を経営と成長の両面から後押しします。</p>
-      </div>
-
-      <div class="box center-box">
-        <h3>あなたの道は、あなたが決める</h3>
-        <p>昇給、転職、独立。どの道も正解です。</p>
-        <p>リツアンは、あなたの挑戦をいつでも支え続けます。</p>
-      </div>
-
-    </div>
-
-    <!-- フッター -->
-    <div class="modal__footer">
-     <a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
-  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
-</a>
-
-      </a>
-    </div>
+<div class="faq-item">
+  <button class="faq-question">Q5. Kaggleに参加するとどんなメリットがありますか？</button>
+  <div class="faq-answer">
+    <p>実データでAIを試せる経験が得られる、世界中の優秀な参加者の解法を学べる、自分のスコアが公開されるので客観的に実力を把握できる、上位に入れば「Kaggleメダル」として世界共通の実績になる、といったメリットがあります。</p>
   </div>
 </div>
 
+<div class="faq-item">
+  <button class="faq-question">Q6. Kaggleで上位に入れなかったら意味がないですか？</button>
+  <div class="faq-answer">
+    <p>いいえ。順位よりも経験が大切です。データの前処理やモデル調整など、試行錯誤を繰り返す過程がスキルを伸ばします。「参加すること」自体に大きな価値があります。</p>
+  </div>
+</div>
 
+<div class="faq-item">
+  <button class="faq-question">Q7. どれくらいの時間が必要ですか？</button>
+  <div class="faq-answer">
+    <p>コンペの規模にもよりますが、週に数時間でも十分参加可能です。短時間でも「実データに触れること」で大きな学びが得られます。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q8. Kaggleで学んだことは社内でどう活かせますか？</button>
+  <div class="faq-answer">
+    <p>Kaggleで培ったスキルは、Step04の社内コンペや実務案件にそのまま活かせます。社外で挑戦した経験が、社内での評価や実績につながります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q9. チームで参加できますか？</button>
+  <div class="faq-answer">
+    <p>はい、できます。Kaggleにはチーム参加機能があり、仲間と役割を分担して取り組むことができます。社内でもチームを組んで挑戦することを推奨しています。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q10. 失敗が怖いのですが…</button>
+  <div class="faq-answer">
+    <p>Kaggleに「失敗」はありません。提出できた時点で経験値が増えています。失敗したコードや試行錯誤の記録が、次の成功のヒントになります。</p>
+  </div>
+</div>
+
+<!-- ================= ★Step04 ================= -->
+<h2 id="step04">Step04｜作る（社内コンペ・OZMAN挑戦）</h2>
+
+<div class="faq-item">
+  <button class="faq-question">Q1. 社内コンペって何ですか？</button>
+  <div class="faq-answer">
+    <p>リツアンが主催するAI開発コンペです。社員や登録者がチームまたは個人で参加し、OZMANの実データを使って課題解決に挑戦します。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q2. どんなテーマが出題されるのですか？</button>
+  <div class="faq-answer">
+    <p>画像認識（植物の種類判定）、売上予測、環境モニタリングなど、実際のビジネス課題がテーマになります。成果によっては、そのまま社会実装につながる可能性もあります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q3. 賞金は本当に出るのですか？</button>
+  <div class="faq-answer">
+    <p>はい。総額2000万円の賞金が用意されています。<br>
+    🥇金賞1000万円、🥈銀賞500万円、🥉銅賞100万円×5本という規模で、全国的にも珍しい大規模コンペです。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q4. 誰でも参加できますか？</button>
+  <div class="faq-answer">
+    <p>Step03（Kaggle）で一定の成果を出した人だけが参加できます。判定基準は現在作成中で、エンジニア社員の技術分布図などを把握したうえで今後決定していきます。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q5. OZMANって何ですか？</button>
+  <div class="faq-answer">
+    <p>静岡県掛川市にあるリツアン運営の植物園兼ショップです。約1,000種類の希少植物を展示・販売しており、コンペではここで得られたデータを活用します。社会的意義と事業性を兼ね備えたデータを扱えるのが特徴です。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q6. コンペに参加するメリットは何ですか？</button>
+  <div class="faq-answer">
+    <p>実務に近いデータで開発経験を積める、結果次第で自分のモデルが本当に導入される可能性がある、賞金という大きなモチベーションがある、社外にもアピールできる実績作りにつながる、などのメリットがあります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q7. コンペの開催期間はどのくらいですか？</button>
+  <div class="faq-answer">
+    <p>数週間〜数ヶ月単位で行われる予定です。忙しい方でも取り組みやすいよう、期間は柔軟に設計されます。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q8. 個人参加とチーム参加は選べますか？</button>
+  <div class="faq-answer">
+    <p>はい、どちらでも参加可能です。個人で挑戦することもできますし、チームで役割を分担して取り組むこともできます。特にチーム参加では、知識共有や相互学習のメリットがあります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q9. コンペの評価基準は何ですか？</button>
+  <div class="faq-answer">
+    <p>精度や再現性といった技術的な指標だけでなく、実務で活用できるかという実用性も重要な評価ポイントになります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q10. コンペ終了後にフィードバックはありますか？</button>
+  <div class="faq-answer">
+    <p>はい。入賞者だけでなく、すべての参加者に講評や優秀コードの共有が行われます。「参加して終わり」ではなく、次につながる学びが得られる仕組みになっています。</p>
+  </div>
+</div>
+<!-- ================= ★Step05 ================= -->
+<h2 id="step05">Step05｜広げる（リビングラボ）</h2>
+
+<div class="faq-item">
+  <button class="faq-question">Q1. リビングラボって何ですか？</button>
+  <div class="faq-answer">
+    <p>リビングラボ（Living Lab）とは、研究室の中ではなく、実際の生活や仕事の現場を舞台にして新しい技術やサービスを試す仕組みのことです。特徴は「企業・自治体・住民・エンジニアが一緒に参加すること」。リツアンでは、地方にAIの価値を届けると同時に、エンジニア社員が社会実装の実績を積む場として位置づけています。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q2. どんな場所で実施されますか？</button>
+  <div class="faq-answer">
+    <p>商店街、観光地、町工場、自治体の役所など地方の現場が舞台です。都市部に比べてDXやAIの導入が遅れており、格差が広がっている地方こそ課題が山積みです。だからこそ、地方とエンジニアが共に成長できる“共進化のステージ”になります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q3. どんな課題に取り組むのですか？</button>
+  <div class="faq-answer">
+    <p>例として：<br>
+    ・商店街：カメラ映像で来客数や属性を分析し、売場改善に活用<br>
+    ・観光地：人流データを活用して混雑予測や案内改善<br>
+    ・町工場：機械稼働をモニタリングして故障予兆を検知<br>
+    → 現場の課題をAIで解決し、その成果を実際に社会に届けることが目的です。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q4. PoCや導入の流れと費用はどうなりますか？</button>
+  <div class="faq-answer">
+    <p>Step05では、まず無償PoC（試験導入）として現場の課題に挑戦します。その上で成果が確認され、受け入れ先が十分に納得すれば、有償の本格システムへ発展させることを想定しています。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q5. PoCで終わらずに実装まで進められるのですか？</button>
+  <div class="faq-answer">
+    <p>はい。多くのAIプロジェクトはPoC止まりで終わってしまいますが、Step05の狙いは「PoCで終わらせず実装まで進めること」です。開発から導入、運用・保守までを一気通貫で行う設計になっています。ただし本格導入へ進むためには受け入れ先の理解と合意が不可欠です。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q6. 誰が参加できますか？</button>
+  <div class="faq-answer">
+    <p>Step04（社内コンペ）で成果を出した人が対象です。参加することで、エンジニア社員は実績を積み、社会に価値を届ける経験を得られます。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q7. 現地に行く必要はありますか？</button>
+  <div class="faq-answer">
+    <p>案件によって異なります。オンラインで対応できる場合もありますが、現地で住民や企業と直接やりとりし、AIを社会実装する体験をするケースもあります。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q8. どのくらいの期間で行われますか？</button>
+  <div class="faq-answer">
+    <p>小規模案件は1〜2か月程度、大規模な案件では3〜6か月程度を想定しています。短期間でも成果が出せるよう、現場に即したテーマ設定が工夫されています。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q9. 成果はどのように評価されますか？</button>
+  <div class="faq-answer">
+    <p>技術的な完成度＋現場で役立ったかどうかが評価の中心です。成果は利用者や企業の声をもとに判断され、「地方とエンジニアの双方に価値をもたらしたか」が大切にされます。</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Q10. 参加するメリットは何ですか？</button>
+  <div class="faq-answer">
+    <p>リビングラボに参加する最大のメリットは、「時代が求める実績」を積めることです。<br>
+    2030年には国内で約79万人のIT人材が不足すると予測されていますが、不足するのは「コードを書く人材」ではなく、<br>
+    ・課題を発見し数値化（KPI化）する力<br>
+    ・AIモデルを作り現場に導入する力<br>
+    ・成果を説明し社会に価値を示す力<br>
+    を持つエンジニアです。Step05では、地方の現場と共にAIを実装し、公益性のある成果を残す経験を積むことができます。</p>
+  </div>
+</div>
 
 
 
 <script>
-/* ===============
-   Modal Controller
-   ================ */
-function openModal(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.setAttribute('aria-hidden','false');
-  document.addEventListener('keydown', escClose);
-  el.addEventListener('click', backdropClose);
-}
-function closeModal(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.setAttribute('aria-hidden','true');
-  document.removeEventListener('keydown', escClose);
-  el.removeEventListener('click', backdropClose);
-}
-function escClose(e){
-  if(e.key === 'Escape'){
-    document.querySelectorAll('.modal[aria-hidden="false"]').forEach(m=>{
-      m.setAttribute('aria-hidden','true');
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
     });
-    document.removeEventListener('keydown', escClose);
-  }
-}
-function backdropClose(e){
-  if(e.target.classList.contains('modal')){
-    e.currentTarget.setAttribute('aria-hidden','true');
-    document.removeEventListener('keydown', escClose);
-  }
-}
-</script>
-<script>
-/* ===============
-   Scroll Animation（一度表示されたら保持）
-   ================ */
-const targets = document.querySelectorAll('.fade-up');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');  // 表示
-      observer.unobserve(entry.target);    // 監視解除 → 上に戻っても消えない
-    }
   });
-});
-
-// 全要素を監視開始
-targets.forEach(el => observer.observe(el));
 </script>
 
 </body>
-
 </html>
-
-
