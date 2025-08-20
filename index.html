@@ -200,26 +200,42 @@ section.gradation--black .section-body {
 .modal__body p { margin: 0 0 0.9rem 0; }
 
 .modal__footer {
-  margin-top: 1rem; position: sticky; bottom: 0;
-  background: #fff; padding-top: 0.2rem;
-  z-index: 1; display: block;
+  margin-top: 1rem;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+
+  display: flex;               /* 横並び */
+  justify-content: flex-end;   /* デフォは右寄せ */
+  align-items: center;         /* 縦位置を中央揃え */
 }
+
 .modal__footer .cta-btn {
-  display: block; max-width: 250px; margin: 0 auto 0.4rem;
+  max-width: 250px;
+  margin: 0;                   /* 中央寄せ解除 → 左寄せ */
 }
 
 .modal__close {
-  appearance: none; border: 0; background: transparent;
-  color: #fff; font-size: 1.8rem; cursor: pointer; margin-left: auto;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-left: auto;
 }
-.modal__close:hover { color: #ff4081; }
+.modal__close:hover {
+  color: #ff4081;
+}
 
 .modal__image {
   text-align: center;
   margin: 1.2rem 0;
 }
 .modal__image img {
-  max-width: 70%;       /* ← 少し大きめに変更 */
+  max-width: 70%;        /* ← 少し大きめに変更 */
   border-radius: 8px;
   margin: 0 auto 1rem;
   display: block;
@@ -338,6 +354,36 @@ section.has-divider::after {
     max-width: 280px;  /* スマホではさらに小さめ */
   }
 }
+
+.modal__footer {
+  margin-top: 1rem;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+
+  display: flex;
+  justify-content: flex-end;  /* デフォは右寄せ */
+  align-items: center;
+}
+
+.modal__footer .cta-btn {
+  max-width: 250px;
+  margin-right: auto;   /* ボタンがあるときは左寄せ */
+}
+
+.modal__footer .fqa-banner {
+  max-width: 80px;
+  height: auto;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.modal__footer .fqa-banner:hover {
+  transform: scale(1.05);
+}
+
 
 
 </style>
@@ -592,9 +638,15 @@ section.has-divider::after {
 
     <div class="modal__footer">
       <a class="cta-btn" href="https://ritsuan.com/ai_tech/" target="_blank" rel="noopener">▶ AIテック公式サイトへ</a>
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
     </div>
   </div>
 </div>
+
 
 
 <!-- Step02 -->
@@ -607,30 +659,41 @@ section.has-divider::after {
 
     <div class="modal__body">
 
-      <!-- ✅ 挿入画像（Step02_modal.png） -->
+      <!-- メインイメージ -->
       <div class="modal__image">
         <img src="Step02_modal.png" alt="G検定・E資格のイメージ画像">
       </div>
 
-      <p>AIの学びを次の段階へ進めるのがStep02です。ここでは 「G検定」と「E資格」 に挑戦します。</p>
-      <p>G検定 は、AIの基礎知識や活用事例を体系的に整理し、理解度を客観的に示せる資格です。基礎を固め、自信を持って語れる力につながります。</p>
+      <p><strong>AIの学びを次の段階へ進めるのが Step02。</strong>  
+      ここでは、日本ディープラーニング協会（JDLA）が実施する「<strong>G検定</strong>」と「<strong>E資格</strong>」に挑戦します。</p>
 
-      <!-- ✨ 強調エリア（淡金背景＋強調） -->
+      <p><strong>G検定</strong>は、AIの基礎知識や活用事例を体系的に整理し、理解度を客観的に示せる資格。  
+      「知っている」を「理解している」に変え、自信を持って語れる力につながります。</p>
+
+      <!-- ✨ 強調エリア -->
       <p class="highlight-box">
-        E資格 はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価します。受験には JDLA認定プログラムの修了が必須で、
-        <strong>通常は十数万円規模の受講料が必要です。</strong><br>
-        現在リツアンは認定プログラム事業者となる準備を進めており、2026年初夏以降には、<strong>社員やキャリターン登録者が
-        <span style="color:red">無料</span>で受講できる仕組みを整える予定です。</strong>
+        <strong>E資格</strong>はディープラーニングを中心とした高度な技術を対象にし、実装スキルを評価する実務者向けの資格です。  
+        受験には JDLA認定プログラムの修了が必須で、通常は <strong>十数万円規模の受講料</strong> が必要です。  
+        しかしリツアンでは2026年初夏以降、<strong>社員やキャリターン登録者は <span style="color:red">無料</span> で受講できる仕組み</strong>を整備予定です。
       </p>
-      <!-- ✨ ここまで強調 -->
 
-      <p>また、資格保有者による メンタリング制度 や、仲間と学び合える仕組みを設け、レベルを問わず挑戦しやすい環境を準備しています。</p>
-      <p>Step02は「試験に合格すること」だけが目的ではありません。ここで得た知識を確かな証明へと変え、次の Step03「社外コンペ」に挑むための大切な土台となります。</p>
+      <p>さらに、資格保有者による <strong>メンタリング制度</strong> や仲間と学び合える仕組みも準備中。  
+      レベルを問わず挑戦しやすい環境を整えています。</p>
 
+      <p>Step02は単なる試験合格がゴールではありません。  
+      ここで得た知識を確かな証明に変え、次の <strong>Step03「社外コンペ」</strong> へ挑むための大切な土台となります。</p>
     </div>
 
+    <!-- フッター -->
     <div class="modal__footer">
-      <a class="cta-btn" href="https://www.jdla.org/certificate/" target="_blank" rel="noopener">▶ JDLA公式サイトへ</a>
+      <a class="cta-btn" href="https://www.jdla.org/certificate/" target="_blank" rel="noopener">
+        ▶ JDLA公式サイトへ
+      </a>
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
     </div>
   </div>
 </div>
@@ -650,19 +713,39 @@ section.has-divider::after {
 
     <div class="modal__body">
 
+      <!-- メイン画像 -->
       <div class="modal__image">
         <img src="Step03_modal.png" alt="Kaggle挑戦のイメージ画像">
       </div>
 
-      <p>知識を実力に変えるには、実戦の場で手を動かすことが欠かせません。Step03では、社外コンペに挑戦します。代表例が、Googleが運営する世界最大級のデータサイエンスプラットフォーム、Kaggleです。</p>
-      <p>Kaggleには世界中から数十万人のエンジニアや研究者が集まり、公開データを使ってAIモデルを開発し、その精度や発想力を競います。ここで得られる経験は、机上の勉強だけでは到達できない実践力につながります。</p>
-      <p>実際のデータにはノイズや欠損値が含まれ、理論通りには進みません。Kaggleでは、こうした課題を前に特徴量の工夫やアルゴリズムの選択を繰り返し試行錯誤することになります。この過程そのものが、AI開発に不可欠なスキルを育てます。</p>
-      <p>さらに、Kaggleの大きな魅力は世界基準でのベンチマークです。同じ課題に数万人規模で挑戦するため、自分のモデルが国際的にどのレベルにあるかを客観的に把握できます。上位入賞が唯一の目的ではなく、この挑戦のプロセスで得られる「経験の厚み」こそが最大の財産です。</p>
-      <p>Step03は、Googleが支える国際舞台で力を試し、挑戦を通じて成長するステージです。ここで実力を残した者が次のStep04「社内コンペ」への挑戦権を得ます。</p>
+      <p><strong>「知識を実力に変えるには、実戦の場で手を動かすしかない」</strong>。  
+      Step03では、社外コンペへの挑戦を通じて腕を磨きます。その代表例が、Googleが運営する世界最大級のデータサイエンスプラットフォーム <strong>Kaggle</strong> です。</p>
+
+      <p>Kaggleには世界中から数十万人規模のエンジニアや研究者が集い、公開データを使ってAIモデルの精度や発想力を競い合います。  
+      ここで得られる経験は、机上の学習だけでは到達できない「実戦力」へと直結します。</p>
+
+      <p>実際のデータにはノイズや欠損値が含まれ、理論通りには進みません。  
+      Kaggleの挑戦では、特徴量エンジニアリングやアルゴリズム選択を繰り返し試しながら、解決策を模索していきます。  
+      この試行錯誤そのものが、プロの現場で求められるスキルを鍛える最高の教材となります。</p>
+
+      <p>さらに Kaggle の魅力は <strong>世界基準でのベンチマーク</strong>。  
+      同じ課題に数万人規模が挑むため、自分のモデルが国際的にどのレベルにあるかを客観的に把握できます。  
+      上位入賞を狙うことだけが目的ではなく、この挑戦のプロセスで得られる「経験の厚み」こそが最大の財産です。</p>
+
+      <p>Step03は、Googleが支える国際舞台で力を試すステージ。  
+      この挑戦で結果を残した者にこそ、次の <strong>Step04「社内コンペ」</strong> への挑戦権が開かれます。</p>
     </div>
 
+    <!-- フッター -->
     <div class="modal__footer">
-      <a class="cta-btn" href="https://www.kaggle.com/" target="_blank" rel="noopener">▶ Kaggle公式サイトへ</a>
+      <a class="cta-btn" href="https://www.kaggle.com/" target="_blank" rel="noopener">
+        ▶ Kaggle公式サイトへ
+      </a>
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
     </div>
   </div>
 </div>
@@ -700,7 +783,14 @@ section.has-divider::after {
 
     </div>
 
-    <div class="modal__footer"></div>
+    <!-- フッター -->
+    <div class="modal__footer">
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
+    </div>
   </div>
 </div>
 
@@ -738,7 +828,14 @@ section.has-divider::after {
 
     </div>
 
-    <div class="modal__footer"></div>
+    <!-- フッター -->
+    <div class="modal__footer">
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
+    </div>
   </div>
 </div>
 
@@ -765,7 +862,14 @@ section.has-divider::after {
       <p>地方は都市に比べてDXやAIの導入が遅れがちです。だからこそリビングラボを地方から始めます。エンジニアには経験と実績が残り、企業には確かな成果が届き、リツアンには信用とノウハウが積み重なる。――まさに「三方よし」を実現するステージがStep05です。</p>
     </div>
 
-    <div class="modal__footer"></div>
+    <!-- フッター -->
+    <div class="modal__footer">
+<a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
+    </div>
   </div>
 </div>
 
@@ -827,10 +931,17 @@ section.has-divider::after {
       </div>
 
     </div>
+
+    <!-- フッター -->
+    <div class="modal__footer">
+     <a href="https://nonaka-rstc.github.io/my-website-fqa/" target="_blank" rel="noopener">
+  <img src="modal_fqa.png" alt="よくある質問はこちら" class="fqa-banner">
+</a>
+
+      </a>
+    </div>
   </div>
 </div>
-
-
 
 
 
