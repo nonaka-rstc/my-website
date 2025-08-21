@@ -71,9 +71,37 @@ img { max-width: 100%; height: auto; display: block; }
 section { width: 100%; padding: var(--section-y) var(--container-x); }
 .container { max-width: var(--container-w); margin-inline: auto; }
 
-/* reverseクラス追加 */
-.step-row.reverse {
-  flex-direction: row-reverse;
+.step-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  flex-wrap: nowrap;
+  margin-bottom: 2rem;
+}
+.step-text { flex: 1 1 60%; }
+.step-image { flex: 1 1 40%; text-align: right; margin-top: 3rem; }
+.step-image img { width: 100%; max-width: 320px; }
+
+/* スマホ時は縦並び＋画像非表示 */
+@media (max-width: 768px) {
+  .step-row {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+  }
+  .step-image { display: none; }
+}
+
+/* セクションの区切りマーク */
+section.has-divider { position: relative; }
+section.has-divider::after {
+  content: "";
+  position: absolute; left: 50%; bottom: 0;
+  transform: translateX(-50%) translateY(50%);
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid #bbb;
+  z-index: 2;
 }
 
 /* ========================================
@@ -234,24 +262,6 @@ section.gradation--black .section-body {
 }
 .fade-up { opacity: 0; transform: translateY(50px); transition: all 1.3s ease-out; }
 .fade-up.show { opacity: 1; transform: translateY(0); }
-.step-image img { width: 100%; max-width: 320px; }
-.step-row { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: nowrap; margin-bottom: 2rem; }
-.step-text { flex: 1 1 60%; }
-.step-image { flex: 1 1 40%; text-align: right; margin-top: 3rem; }
-@media (max-width: 768px) {
-  .step-row { flex-direction: column; align-items: center; gap: 2rem; }
-  .step-image { display: none; }
-}
-section.has-divider { position: relative; }
-section.has-divider::after {
-  content: "";
-  position: absolute; left: 50%; bottom: 0;
-  transform: translateX(-50%) translateY(50%);
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 30px solid #bbb;
-  z-index: 2;
-}
 
 /* ========================================
    9) モーダル内カスタム
@@ -320,7 +330,16 @@ section.has-divider::after {
   transition: transform 0.3s ease;
 }
 .closing-fqa-inline img:hover { transform: scale(1.05); }
+
+/* ========================================
+   10) 交互レイアウト強制適用
+   ======================================== */
+section .container .step-row.reverse {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+}
 </style>
+
 </head>
 
 <body>
@@ -348,15 +367,14 @@ section.has-divider::after {
   </div>
 </section>
 
+
 <!-- =========================
      S1（白） Step01｜知る
      ========================= -->
 <section class="has-divider">
   <div class="container">
     <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step01.png" alt="AIテック イメージ">
-      </div>
+      <!-- 先にテキスト -->
       <div class="step-text section-body fade-up">
         <h2 class="section-title fade-up">Step01｜知る</h2>
         <div class="section-subtitle fade-up">AIテック</div>
@@ -368,6 +386,10 @@ section.has-divider::after {
         <div class="cta-row">
           <a href="#" class="cta-btn" onclick="openModal('m-s1');return false;">AIテックって何？</a>
         </div>
+      </div>
+      <!-- 後に画像 -->
+      <div class="step-image fade-up">
+        <img src="step01.png" alt="AIテック イメージ">
       </div>
     </div>
   </div>
@@ -410,9 +432,7 @@ section.has-divider::after {
 <section class="has-divider">
   <div class="container">
     <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step03.png" alt="Step03 イメージ">
-      </div>
+      <!-- 先にテキスト -->
       <div class="step-text section-body fade-up">
         <h2 class="section-title fade-up">Step03｜試す</h2>
         <div class="section-subtitle fade-up">社外コンペに挑戦！</div>
@@ -423,6 +443,10 @@ section.has-divider::after {
         <div class="cta-row">
           <a href="#" class="cta-btn" onclick="openModal('m-s3');return false;">Kaggleを詳しく知る</a>
         </div>
+      </div>
+      <!-- 後に画像 -->
+      <div class="step-image fade-up">
+        <img src="step03.png" alt="Step03 イメージ">
       </div>
     </div>
   </div>
@@ -465,9 +489,7 @@ section.has-divider::after {
 <section class="has-divider">
   <div class="container">
     <div class="step-row reverse">
-      <div class="step-image fade-up">
-        <img src="step05.png" alt="Step05 イメージ">
-      </div>
+      <!-- 先にテキスト -->
       <div class="step-text section-body fade-up">
         <h2 class="section-title fade-up">Step05｜広げる</h2>
         <div class="section-subtitle fade-up">リアルな現場に挑戦！</div>
@@ -479,10 +501,15 @@ section.has-divider::after {
           <a href="#" class="cta-btn" onclick="openModal('m-s5');return false;">リビングラボを詳しく知る</a>
         </div>
       </div>
+      <!-- 後に画像 -->
+      <div class="step-image fade-up">
+        <img src="step05.png" alt="Step05 イメージ">
+      </div>
     </div>
   </div>
 </section>
 <div class="step-divider"></div>
+
 
 
 <!-- =========================
